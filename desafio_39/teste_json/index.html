@@ -11,9 +11,38 @@
 
     <script>
         var local = window.document.querySelector('#zero');
-        fetch('./t-s-t.json')
-        .then(results => console.log(results.json()));
+        /*fetch('./t-s-t.json')
+        .then(results => results.json())
+        .then(console.log);*/
 
+        var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+      //var status = xhr.status;
+      if (xhr.status === 200) { 
+        //Callback caso de tudo certo
+        callback(null, xhr.response);
+      } else {
+        //Callback caso de algum erro
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+
+//Utilizando o método
+var n;
+getJSON('./t-s-t.json', function(err, data) {
+  if (err !== null) {
+    console.log('Ocorreu um erro' + err);
+  } else {
+    console.log(data);
+    n = data;
+    console.log(`tipo = ${typeof n.name} // value = ${n.name}`)
+  }
+});
     </script>
 </body>
 </html>
