@@ -28,31 +28,21 @@ async function play () {
         auto = 0;
         console.log('auto = ' + auto);
     }
-    let num = Math.floor(Math.random()*10);
+    let num = Math.round(Math.random()*20);
     console.log(num);
-    if (num <= 5 && py < 0){
+    if (num <= 5){
         pt = 1;
         pl = 0;
-    }else if(num <= 5 && py > 600){
+    }else if(num <= 10){
         pt = -1;
         pl = 0;
-    }else if(px < 0){
+    }else if(num <= 15){
         pl = 1;
         pt = 0;
-    }else if(px > 800){
+    }else if(num <= 20){
         pl = -1;
         pt = 0;
     }
-/*
-    if(px < 0){
-        pl = 1;
-    }else if(px > 800){
-        pl = -1;
-    }else if(py < 0){
-        pt = 1;
-    }else if(py > 600){
-        pt = -1;
-    }*/
     console.log(`px = ${px} // py = ${py}`);
     px += pl*vel;
     py += pt*vel;
