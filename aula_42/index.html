@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formatacão condicional</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        table{
+            border-collapse: collapse;
+            width: fit-content;
+            margin: auto;
+        }
+        td, th{
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>formatacão condicional</h1>
+
+    <table>
+        <caption>nota dos aluno</caption>
+        <thead>
+            <tr>
+                <th>aluno</th>
+                <th>nota 1</th>
+                <th>nota 2</th>
+                <th>resultado</th>
+            </tr>
+        </thead>
+        <tbody id="zero">
+            <tr>
+                <td>ana</td>
+                <td>50.5</td>
+                <td>40</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>marcelo</td>
+                <td>30</td>
+                <td>47</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>joão</td>
+                <td>50</td>
+                <td>20</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>caio</td>
+                <td>50</td>
+                <td>49.8</td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot id="one">
+            <tr>
+                <th>media:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <script>
+        var tb = window.document.querySelector('#zero');
+
+        //console.log(tb.rows[1].cells[1].innerHTML)
+        for (let i = 0; i < tb.rows.length;i++) {
+            let nota = Number(tb.rows[i].cells[1].innerHTML) + Number(tb.rows[i].cells[2].innerHTML);
+            tb.rows[i].cells[3].innerHTML = nota;
+
+            if(i == (tb.rows.length - 1)) {
+                media();
+            }
+
+        }
+        function media () {
+            let valor = 0;
+            let v1 = 0;
+            let v2 = 0;
+            for (let i = 0;i < tb.rows.length;i++) {
+                v1 += Number(tb.rows[i].cells[1].innerHTML);
+                if(i == (tb.rows.length - 1)) {
+                v1 = v1 / (tb.rows.length + 1);
+             }
+             
+            }
+            for (let i = 0;i < tb.rows.length;i++) {
+                v2 += Number(tb.rows[i].cells[2].innerHTML);
+
+                if(i == (tb.rows.length - 1)) {
+                v2 = v2 / (tb.rows.length + 1);
+             }
+             
+            }
+
+            for (let i = 0;i < tb.rows.length;i++) {
+                valor += Number(tb.rows[i].cells[3].innerHTML);
+
+                if(i == (tb.rows.length - 1)) {
+                valor = valor / (tb.rows.length + 1);
+             }
+             
+            }
+            var exportar  = window.document.querySelector('#one');
+            exportar.rows[0].cells[1].innerHTML = Math.floor(v1);
+            exportar.rows[0].cells[2].innerHTML = Math.floor(v2);
+            exportar.rows[0].cells[3].innerHTML = Math.floor(valor);
+           
+        }
+    </script>
+</body>
+</html>
