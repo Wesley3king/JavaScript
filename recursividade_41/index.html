@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recursividade</title>
+    <style>
+        #zero{
+            width: 150px;
+            height: 150px;
+            background-color: blueviolet;
+            position: absolute;
+        }
+       /* #zero:hover{
+            transition-duration: 1s;
+            transform: rotate(30deg);
+        }*/
+    </style>
+</head>
+<body>
+    
+    <div id="zero">
+
+    </div>
+
+    <script>
+        const anima = window.document.getElementById('zero');
+        var angulo = 0;
+        var controle;
+        function show () {
+            console.log(angulo);
+            anima.style.transform=`rotate(${angulo}deg)`;
+            angulo += 2;
+            if(angulo > 360) {
+                angulo = 0;
+            }
+            controle = requestAnimationFrame(show);
+        }
+        //controle = setInterval(show(),1000);
+        show();
+        //  fatorial
+        function fat (num) {
+            if(num === 1) {
+                return 1;
+            }
+            return num * fat(--num)
+        }
+        console.log(fat(5));
+    </script>
+</body>
+</html>
