@@ -30,3 +30,20 @@ document.write(`slice = ${txt.slice(0,8)} <br>`);
 //split
 document.write(`splite === ${txt.split(' ')} <br>`)
 //cada virgúla signica um corte, podes acessar cada palavra contada por um array = console.log(res[1]); === pt;
+
+//pt 3
+
+//toString
+var num = 15;
+document.write(`toString binario = ${num.toString(2)}<br>`);
+document.write(`toString octal = ${num.toString(8)}<br>`);
+document.write(`toString hexadecimal = ${num.toString(16)}<br>`);
+
+//trim
+var texto = "    ok    ";
+document.write(`trim = ${txt.trim(texto)}<br>`);
+
+//caracteres especiais
+document.write("caracteres especiais <br>");
+document.write("king \"of\" shadows");
+document.write("i \\am\\ the bone of my sword    \"unkow to death\"         \"unlimited blade works\"");
