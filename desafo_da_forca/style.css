@@ -2,3 +2,68 @@
 body{
     margin: 0px;
 }
+#corpo{
+    width: max-content;
+    margin: auto;
+}
+#cara{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(230, 160, 102, 0.74);
+}
+#corpo2{
+    width: 50px;
+    height: 90px;
+    background-color: aqua;
+}
+#braco_left{
+    width: 10px;
+    height: 65px;
+    background-color: rgba(230, 160, 102, 0.555);
+    margin-top: -84px;
+    margin-left: -18px;
+    transform: rotate(15deg);
+}
+#braco_right{
+    width: 10px;
+    height: 65px;
+    background-color: rgba(230, 160, 102, 0.555);
+    margin-top: -65px;
+    margin-left: 57px;
+    transform: rotate(-15deg);
+}
+#perna_left{
+    display: inline-block;
+    width: 10px;
+    height: 60px;
+    background-color: rgba(230, 160, 102, 0.555);
+    margin-top: 18px;
+}
+#perna_right{
+    width: 10px;
+    height: 60px;
+    background-color: rgba(230, 160, 102, 0.555);
+    margin-top: 18px;
+    margin-left: 26px;
+    display: inline-block;
+}
+#lll{
+    width: 60vh;
+    height: 10vh;
+    margin: auto;
+    border: 1px solid black;
+    text-align: center;
+}
+#go{
+    width: max-content;
+    margin: auto;
+    padding: 10px;
+}
+.vazio{
+    display: inline-block;
+    width: 25px;
+    height: 35px;
+    border-bottom: 1px solid black;
+    margin-left: 8px;
+}
