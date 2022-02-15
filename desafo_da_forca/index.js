@@ -5,6 +5,7 @@ const partes =[window.document.querySelector('#braco_left'),window.document.quer
 var espaços = [];
 var num;
 var win_points = 0;
+var erros = 0;
 
 function verificar () {
     let vv = window.document.querySelector('#valor').value
@@ -26,7 +27,13 @@ function verificar () {
             document.write('você ganhou');
         }
     }else{
-        
+        partes[erros].style.display= 'none';
+        if(erros == 0) {
+            partes[2].style.marginTop="-1px";
+            partes[3].style.marginTop="-1px";
+
+        }
+        erros++
     }
 }
 
