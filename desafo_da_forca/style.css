@@ -1,4 +1,7 @@
 @charset "UTF-8";
+:root{
+    --font: normal normal 10vh arial,helvetica,sans-serif;
+}
 body{
     margin: 0px;
 }
@@ -63,10 +66,44 @@ body{
 .vazio{
     display: inline-block;
     width: 25px;
-    height: 35px;
+    height: 17px;
     border-bottom: 1px solid black;
     margin-left: 8px;
 }
 #valor{
     text-align: center;
+}
+.you_lose{
+ width: 80vw;
+ height: 15vh;
+ color: black;
+ background-color: red;
+ margin: auto;
+ text-align: center;
+ font: var(--font);
+}
+.you_win{
+    width: 80vw;
+    height: 15vh;
+    background-color: gold;
+    color: white;
+    margin: auto;
+    text-align: center;
+    font: var(--font);
+}
+.nnn{
+    width: 70px;
+    height: 24xp;
+    margin: 7px;
+    text-align: center;
+    background-color: greenyellow;
+    font-size: medium;
+}
+.ppp{
+    width: 90px;
+    height: 24xp;
+    margin: 7px;
+    text-align: center;
+    background-color: orange;
+    font-size: medium;
 }
