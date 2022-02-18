@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventos em jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        #zero{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin: auto;
+        }
+        #margem{
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>eventos com jQuery</h1>
+    <br>
+    <p id="one"></p>
+    <div id="zero"></div>
+    <div id="margem">
+        <label for="two">texto</label>
+        <input type="text" id="two">
+    </div>
+    <script>
+        $('#one').text('hey!, hey!');
+        //      eventos
+        //  ready
+        $('#zero').ready(()=>{
+            $('h1').css('color', 'lime');
+        });
+        //click
+        $('#zero').click(()=>{
+            $('#zero').css('background-color', 'yellow');
+        });
+        //  mouseenter
+        $('#zero').mouseenter(()=>{
+            $('p').css('color', 'green');
+            $('#zero').css('background-color', 'blue')
+        });
+        $('#two').mouseenter(()=>{
+            $('body').css('background-color','white');
+        })
+        //  mouseleave
+        $('#zero').mouseleave(()=>{
+            $('#zero').css('background-color', 'darkred');
+            $('body').css('background-color','white');
+            $('h1').css('color','lime');
+        });
+        //  mousemove (movimento do mouse)
+        $('#zero').mousemove(()=>{
+            $('body').css('background-color','aquamarine');
+            $('h1').css('color','white');
+        });
+        //  keypress / keydown / keyup
+        $('#two').keydown(()=>{
+            $('body').css('background-color','purple')
+        });
+        $('#two').keyup(()=>{
+            $('body').css('background-color', 'red');
+        });
+    </script>
+</body>
+</html>
