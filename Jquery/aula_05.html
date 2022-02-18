@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>varios eventos em jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>o evento on</h1>
+    <br>
+    <p>o evento <strong>on</strong> permite atribuir varios eventos com jQuery</p>
+    <div></div>
+    <p id="one"></p>
+    <script>
+        //multiplos eventos com uma rotina
+        $('div').on('mouseleave dblclick', ()=>{
+            $('body').css('background-color', 'white');
+            $('body').css('color', 'black');
+            $('#one').text('o mouse saiu ou houve um click duplo.');
+        })
+
+        //multiplos eventos com multiplas rotinas
+        $('div').on({
+            click: ()=>{
+                $('#one').text('foi clicado');
+            },
+            mouseenter: ()=>{
+                $('#one').text('o mouse entrou!');
+                $('body').css('background-color', 'lime');
+                $('body').css('color', 'white');
+            },
+            mousemove: ()=>{
+                $('#one').text('o mouse se moveu!');
+            }
+        });
+    </script>
+</body>
+</html>
