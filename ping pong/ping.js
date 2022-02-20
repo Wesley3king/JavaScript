@@ -9,7 +9,8 @@ var game, frame;
 game = false;
 //posição
 var bolax, bolay;
-var posplayerx,posplayery,poscpux,poscpuy;
+var posplayerx,poscpux,poscpuy;
+var posplayery;
 var bolaIX, bolaIY;
 //direção
 var dirJy;
@@ -84,13 +85,17 @@ function controle_animation () {
 }
 
 function control_player () {
-    
     if (game) {
-        if ((posplayery+barraH) >= campoH || posplayery <= campoH ){
-            posplayery+= (velplayer * dirJy) * (-1);
+        if ((posplayery+barraH) >= campoH || posplayery <= 0){
+            posplayery += (velplayer * dirJy) * (-1); 
+            //posplayery +=(velplayer * dirJy);
+            console.log(posplayery+barraH,campoH)
+
         }
-        posplayery += velplayer * dirJy;
-        //console.log(`${posplayery} // ${soma}`);
+        posplayery +=(velplayer * dirJy);
+        //posplayery+= (velplayer * dirJy) * (-1);
+        //console.log(`${posplayery} // ${velplayer}`);
+        
         player.style.top= `${posplayery}px`;
     }
 }
