@@ -39,11 +39,10 @@ var tecla;
 //inicializador
 
 function inicializar () {
-    velbola = velcpu = velplayer = 8;
     iniciar = window.document.querySelector('#btIniciar');
-    iniciar.addEventListener('click',primeiro_passo);
+    iniciar.setAttribute('onclick','primeiro_passo()');
     player = window.document.querySelector('#dvJogador');
-    cpu = window.document.querySelector('#dvCpu');
+    cpu = window.document.querySelector('#dvCPU');
     bola  = window.document.querySelector('#dvBola');
     painel_pontos = window.document.querySelector('#txtPontos');
     document.addEventListener('keydown',down);
@@ -55,6 +54,8 @@ window.addEventListener('load',inicializar);
 
 function primeiro_passo () {
     if (!game) {
+        velbola = velcpu = velplayer = 8;
+        console.log(velbola);
         game  = true
         cancelAnimationFrame(frame);
         dirJy = 0;
@@ -93,9 +94,6 @@ function control_player () {
 
         }
         posplayery +=(velplayer * dirJy);
-        //posplayery+= (velplayer * dirJy) * (-1);
-        //console.log(`${posplayery} // ${velplayer}`);
-        
         player.style.top= `${posplayery}px`;
     }
 }
@@ -112,6 +110,27 @@ function controle_bola () {
     if ((bolax >= poscpux-barraW) && (((bolay + bolaH) >= poscpuy) && (bolay <= poscpuy+barraH))){
         dirbolay = ((bolay +(bolaH/2)) - (poscpuy + (barraH/2)))/16;
         dirbolax*=-1;
+    }
+    //limites superior/inferior
+    if ((bolay >= 480) || (bolay <= 0)) {
+        dirbolay*=-1;
+    }
+    //saiu é ponto / defeat
+    if (bolay >= (campoW - bolaW)) {
+        console.log('ponto!');
+        win();
+    }else if (bolax <= 0) {
+        console.log('ponto_da_cpu!');
+        velbola = 0;
+        bolax = posbolainiX;
+        bolay = posbolainiY;
+        posplayerx = posjoginiX;
+        posplayery = posjoginiY;
+        pontos--;
+        painel_pontos.value = pontos;
+        game = false;
+        player.style.top= `${posplayery}px`;
+        cpu.style.top = `${poscpuy}px`;
     }
     bola.style.top = `${bolay}px`;
     bola.style.left = `${bolax}px`;
@@ -138,4 +157,17 @@ function up () {
         //para baixo
         dirJy = 0;
     }
+}
+function win () {
+    cancelAnimationFrame(frame);
+    velbola = 0;
+    bolax = posinitialbolax;
+    bolay = posinitialbolay;
+    posplayerx = posjoginiX;
+    posplayery = posjoginiY;
+    pontos++;
+    painel_pontos.value = pontos;
+    game = false;
+    player.style.top= `${posplayery}px`;
+    cpu.style.top = `${poscpuy}px`;
 }
