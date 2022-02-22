@@ -87,11 +87,16 @@ function controle_animation () {
 
 function control_player () {
     if (game) {
-        if ((posplayery+barraH) >= campoH || posplayery <= 0){
-            posplayery += (velplayer * dirJy) * (-1); 
-            //posplayery +=(velplayer * dirJy);
-            console.log(posplayery+barraH,campoH)
+        /*if ((posplayery+barraH) >= campoH || posplayery <= 0){
+            //posplayery += (velplayer * dirJy) * -1; 
+            dirJy = 0;
+            console.log(posplayery+barraH,campoH);
 
+        }*/
+        if ((posplayery+barraH) >= campoH) {
+            dirJy = -1;
+        }else if (posplayery <= 0) {
+            dirJy = 1;
         }
         posplayery +=(velplayer * dirJy);
         player.style.top= `${posplayery}px`;
@@ -116,7 +121,7 @@ function controle_bola () {
         dirbolay*=-1;
     }
     //saiu é ponto / defeat
-    if (bolay >= (campoW - bolaW)) {
+    if (bolax >= (campoW - bolaW)) {
         console.log('ponto!');
         win();
     }else if (bolax <= 0) {
