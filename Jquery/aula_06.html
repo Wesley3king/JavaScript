@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 06  trigger e eventos dinâmicos</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin: 0px;
+        }
+        #zero{
+            width: 200px;
+            height: 200px;
+            background-color: cornflowerblue;
+        }
+        #one{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(212, 237, 100);
+        }
+        #two{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>aula 06 - trigger e eventos dinâmicos</h1>
+    </header>
+    <br>
+    <main id="two">
+        <div id="zero"></div>
+        <div id="one"></div>
+    </main>
+    <script>
+        //trigger
+        $('#zero').on({
+            click: ()=> {
+                //quando clicado deixa o #zero vermelho
+                $('#zero').css('background-color','red');
+            },
+            mouseleave: ()=> {
+                //quando o mouse sair o #zero voltará para a cor azul
+                $('#zero').css('background-color','cornflowerblue')
+            }
+        });
+        //trigger aciona o click mesmo não sendo clicado nele.
+        $('#zero').trigger('click');
+    </script>
+</body>
+</html>
