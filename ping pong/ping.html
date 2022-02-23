@@ -16,7 +16,8 @@
    width: 960px;
    height: 500px;
    border: 1px solid #000;
-   background-color: #000;
+   /*background-color: #000*/
+   background-color: green;
   }
   #dvBola {
    position: absolute;
@@ -24,14 +25,16 @@
    left: 475px;
    width: 20px;
    height: 20px;
-   background-color: #888;
+   /*background-color: #888*/;
+   background-color: black;
    border-radius: 50%;
   }
   .barra {
    position: absolute;
    width: 20px;
    height: 140px;
-   background-color: #888;
+   /*background-color: #888*/;
+   background-color: black;
    top: 180px;
   }
   .esquerda {
@@ -40,25 +43,32 @@
   .direita {
    left: 930px;
   }
-
+  #align{
+    width: max-content;
+    position: relative;
+    margin: auto;
+  }
  </style>
 </head>
 
 <body>
- <div id="dvJogo">
-  <div id="dvBola"></div>
-  <div id="dvJogador" class="barra esquerda"></div>
-  <div id="dvCPU" class="barra direita"> </div>
- </div>
- <div id="dvPainel">
-  <div class="itemPainel">
-    <label>Pontos</label>
-    <input type="text" id="txtPontos" value="0" size="10">
-   </div>
-   <div class="itemPainel">
-    <button id="btIniciar">Iniciar</button>
-   </div>
-  </div>
+  <main id="align">
+    <div id="dvJogo">
+        <div id="dvBola"></div>
+        <div id="dvJogador" class="barra esquerda"></div>
+        <div id="dvCPU" class="barra direita"> </div>
+     </div>
+    
+      <div id="dvPainel">
+        <div class="itemPainel">
+          <label>Pontos</label>
+          <input type="text" id="txtPontos" value="0" size="10">
+        </div>
+        <div class="itemPainel">
+          <button id="btIniciar">Iniciar</button>
+        </div>
+      </div>
+  </main>
   <script src="./ping.js"></script>
  </body>
  
