@@ -81,6 +81,7 @@ function controle_animation () {
     if (game) {
         control_player();
         controle_bola();
+        contol_cpu();
     }
     frame = requestAnimationFrame(controle_animation);
 }
@@ -108,12 +109,12 @@ function controle_bola () {
     bolay += velbola*dirbolay;
     //limites/colisão player
     if ((bolax <= (posplayerx+barraW)) && (((bolay + bolaH) >= posplayery) && (bolay <= posplayery+barraH))){
-        dirbolay = ((bolay +(bolaH/2)) - (posplayery + (barraH/2)))/16;
+        dirbolay = ((bolay +(bolaH/2)) - (posplayery + (barraH/2)))/32;
         dirbolax*=-1;
     }
     //colisão com cpu
     if ((bolax >= poscpux-barraW) && (((bolay + bolaH) >= poscpuy) && (bolay <= poscpuy+barraH))){
-        dirbolay = ((bolay +(bolaH/2)) - (poscpuy + (barraH/2)))/16;
+        dirbolay = ((bolay +(bolaH/2)) - (poscpuy + (barraH/2)))/32;
         dirbolax*=-1;
     }
     //limites superior/inferior
@@ -139,6 +140,35 @@ function controle_bola () {
     }
     bola.style.top = `${bolay}px`;
     bola.style.left = `${bolax}px`;
+}
+//contole da cpu / movimentar cpu
+function contol_cpu () {
+    if (game) {
+        if (bolax > (campoW/2) && (bolax > 0)) {
+            // movimentar cpu
+            if ((bolay + (bolaH/2)) > ((poscpuy+ (barraH/2)) + velcpu)){
+                //to down
+                if ((poscpuy + barraH) <= (campoH)){
+                    poscpuy += velcpu;
+                    console.log('desceu!');
+                }
+            }else if ((bolay + (bolaH/2)) < (poscpuy + (barraH/2)) - velcpu){
+                //to up
+                if (poscpuy >= 0){
+                    poscpuy -= velcpu;
+                    console.log('subiu!');
+         }
+        }
+        }else{
+            //posicionar cpu ao centro
+            if ((poscpuy + (barraH/2)) < (campoH/2)) {
+                poscpuy += velcpu;
+            }else if ((poscpuy + (barraH/2)) > (campoH/2)) {
+                poscpuy -= velcpu;
+            }
+        }
+        cpu.style.top = `${poscpuy}px`;
+    }
 }
 //controles keydown/keyup
 function down () {
