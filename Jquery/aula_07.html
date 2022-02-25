@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 07 event object</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        main{
+            width: max-content;
+            margin: auto;
+        }
+        #two{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>objeto event em jQuery</h1>
+        <div id="two">
+        </div>
+        <p id="one"></p>
+    </main>
+    <script>
+        $('#two').click(()=>{
+            window.open('https://wesley3king.github.io/link/','_blank');
+            window.close();
+        });
+        $('#two').mousemove((event)=>{
+            $('#one').text(`direção X = ${event.pageX} // direção Y = ${event.pageY}`);
+            $('#two').css('background-color','lime');
+            if (event.pageX >= 550 && event.pageY >= 250) {
+               $("#two").trigger('click');
+                
+            }
+        });
+        $('#two').mouseout((event)=>{
+            $('#two').css('background-color','darkcyan');
+        })
+    </script>
+</body>
+</html>
