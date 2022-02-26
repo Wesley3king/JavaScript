@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aulas 62 e 63 Objeto window</title>
+    <title>aulas 62,63 e 64 Objeto window</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
         *{
@@ -19,21 +19,49 @@
             margin: auto;
             background-color: darkviolet;
         }
+        #zero{
+            background-color: deepskyblue;
+            width: 1500px;
+            height: 1500px;
+        }
+        body > iframe{
+            height: 450px;
+        }
     </style>
 </head>
 <body>
-    <h1>aulas 62 e 63 Objeto window</h1>
+    <h1>aulas 62, 63 e 64 Objeto window</h1>
     <br>
     <div id="elemento"></div>
     <p></p>
+    <br>
+    <iframe src="https://wesley3king.github.io/link/"></iframe>
+    <iframe src="https://wesley3king.github.io/link/"></iframe>
+    <iframe src="https://wesley3king.github.io/link/"></iframe>
+    <div id="zero"></div>
     <script>
         //      com jQuery
-        $('div').click(()=>{
+        $('#elemento').click(()=>{
             window.open('https://wesley3king.github.io/link/','_blank','width=320px, height=600px,top=200px,left=1000px');
         })
         $(document).mousemove((event)=>{
             $('p').text(`width: ${window.innerWidth} / height: ${window.innerHeight} // width total: ${window.outerWidth} / height total: ${window.outerHeight} // screen X: ${window.screenX} / screen Y: ${window.screenY}`);
         })
+        // aula 64
+       //scrollBy()
+       $('#zero').click(()=>{
+        window.scrollBy(1000, 600);
+       });
+
+       //legth for window
+       document.write(`iframes na pagina: ${window.length}`);
+
+       // frames[]
+       window.frames[0].location='https://dio.me';
+       window.frames[2].location='./teste_64.html'
+
+       //parent (codigo em './teste_64.html')
+
     </script>
 </body>
 </html>
