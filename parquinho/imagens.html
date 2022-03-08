@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imagens adaptaveis</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #one{
+            padding-bottom: 20px;
+        }
+        main{
+            height: 200px;
+            width: 100%;
+            background-color: orange;
+            position: relative;
+            text-align: center;
+        }
+        #imagen{
+            position: absolute;
+            background-image: url('./martialpeak.webp');
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: contain;
+            width: 100%;
+            height:200px;
+            display: inline-block;
+            transform: translate(-50%);
+        }
+        .zz{
+            width: 40px;
+            height: 200px;
+            background-color: darkred;
+            display: inline-block;
+        }
+        @media (min-width: 400px) {
+            #imagen{
+                width: 399px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="one">testando a responsividade de imagens</h1>
+    </header>
+    <main>
+        <div class="zz" style="float: left;"></div>
+        <div id="imagen" style="float: none;"></div>
+        <div class="zz" style="float: right;"></div>
+    </main>
+</body>
+</html>
