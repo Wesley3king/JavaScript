@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typos, operadores e variaveis</title>
+    <style>
+        body{
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>typos, operadores e variaveis</h1>
+    </header>
+    <script>
+        //spread operator
+        var numero = [1, 2, 3];
+        function soma (a, b, c) {
+            return a + b + c
+        }
+        document.write(soma(...numero)+ '<br>');
+        //continue (console)
+        for (let i = 0; i < 5; ++i) {
+            if (i > 1 && i < 4){
+                continue
+            }
+            console.log(`numero : ${i}`);
+        }
+        // keys e values (object)
+        const valor = {
+            user: 'king of shadows',
+            password: 'gg izzi'
+        }
+        document.write(`key: ${Object.keys(valor)} <br> values : ${Object.values(valor)} <br>`);
+
+        //assign e freeze
+        var gelo = {
+            elemento1: 'agua',
+            elemento2: 'temperatura amena'
+        }
+        let gelo2 = Object.assign({}, gelo, {elemento3: 'oxigênio'})
+        console.log(gelo2)
+
+
+        Object.freeze(gelo);
+        delete gelo.elemento2
+        console.log(gelo)
+
+        // type Symbol
+        var travado = [Symbol('gelo', Symbol('gelo'))]
+        document.write(`Symbol : ${travado[0] === travado[1]}`);
+    </script>
+</body>
+</html>

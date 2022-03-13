@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto navigator</title>
+    <style>
+        body{
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Objeto navigator</h1>
+    </header>
+    <script>
+        //appName
+        document.write(`appName: ${navigator.appName}<br>`);
+        
+        //appVersion
+        document.write(`appVersion : ${navigator.appVersion}<br>`);
+        
+        //cookieEnable
+        document.write(`cookieEnable : ${navigator.cookieEnabled}<br>`);
+
+        //geolocation (latitude, longitude)
+        function local () {
+            let ll = window.navigator.geolocation.getCurrentPosition((data)=>{
+                value_cordened = data.coords;
+                console.log( `localização : \n latitude = ${value_cordened.latitude} / longitude = ${value_cordened.longitude}`);
+            });
+        }
+        local();
+
+        //language
+        document.write(`language : ${navigator.language}<br>`);
+
+        //onLine
+        document.write(`onLine : ${navigator.onLine}<br>`);
+
+        //platform
+        document.write(`platform : ${navigator.platform}}<br>`);
+
+        //product
+        document.write(`product : ${navigator.product}<br>`);
+
+        //userAgent (agente do servidor)
+        document.write(`userAgent : ${navigator.userAgent}<br>`);
+    </script>
+</body>
+</html>
