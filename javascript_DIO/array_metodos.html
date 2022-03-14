@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reduce, filter e map</title>
+</head>
+<body>
+    <header>
+        <h1>reduce, filter e map</h1>
+    </header>
+
+    <script>
+        const valor = [{
+            valor: 1,
+            tipo: 'number'
+        },
+        {
+            valor: 2,
+            tipo: 'number' 
+        },
+        {
+            valor: 3,
+            tipo: 'number'
+        }/*,{
+            valor: '4',
+            tipo: 'string'
+        }*/], arr = [1, 2, 3, '4', 5 , '6'];
+
+        //filter
+        let filtrado = arr.filter(zz);
+        function zz (val) {
+           return typeof val === 'number' ? true
+: false;
+        }
+        console.log(`filter : ${filtrado}`);
+
+        const ages = [32, 33, 16, 40];
+const result = ages.filter(checkAdult);
+
+function checkAdult(age) {
+  return age >= 18;
+}
+console.log(result)
+        //map e reduce e filter
+        let gg = arr.filter(zz)
+        //filter retira os strings
+        .map(value => value *= 1)
+        //map multiplica neste caso por 1
+        .reduce((final, element)=>{
+            final += element;
+            return final;
+        })
+        //reduce soma os valores
+        console.log(gg)
+    </script>
+</body>
+</html>
