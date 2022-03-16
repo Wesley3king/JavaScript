@@ -11,13 +11,22 @@
             color: white;
             background-color: black;
         }
+        li{
+            list-style-position: inside;
+        }
     </style>
 </head>
 <body>
    <header>
        <h1>métodos para Arrays</h1>
    </header>
-
+   <main>
+       <ul>
+           <li>texto 1</li>
+           <li>texto 2</li>
+           <li>texto 3</li>
+       </ul>
+   </main>
    <script>
        const main_array = [1, 2, 3 ,4, 6, 8, 'nine', 'ten'];
 
@@ -25,8 +34,51 @@
 
        //filter retorna um array com os iten que passaram em determinado teste
        var numeros_filtrados = main_array.filter(value => typeof value === 'number')
-       //map é um laço tipo o forEach só que retorna um novo array
-       .map()
+       //map é um laço tipo o forEach só que retorna um novo array e pode fazer modificações para cada item
+       .map(parametro => parametro * 2)
+       //reduce soma todos os valores em novo tipo definido no fim deste
+       .reduce((total,valor)=>{
+            total += valor;
+            return total;
+       }, '');
+       document.write('filter, map e reduce = '+numeros_filtrados);
+
+       // Array.from (retorna um array para certos items como por exemplo o querySelectorAll)
+       var tipe = Array.from(window.document.querySelectorAll('li'));
+       tipe.forEach(mod =>{
+           mod.innerText += ' modificado!'
+       });
+
+       // splice (pode remover e substituir items de um array)
+       var camp = ['barraca', ' lanterna', ' saco de dormir', ' fogueira'];
+       camp.splice(1,1, ' lampeão');
+       document.write(`<br>splice : ${camp}`);
+
+       //flat (descontroi uma matriz por profundidade)
+       var matriz = [1, 2, [3, 4], 5, [6, [7, 8]]];
+       var profundidade1 = matriz.flat(), profundidade2 = matriz.flat(2);
+       console.log(`removido 1 de profundidade : ${profundidade1}\nremovido 2 de profundidade : ${profundidade2}`);
+
+       //   entries com array interator (pessoalmente acho inutil)
+       var obj = ['cama', 'traveseiro'];
+       
+       console.log(` 1 = ${obj.entries().next()} / 2 = ${obj.entries().next()} / 3 = ${obj.entries().next()}`);
+       console.log(obj.entries().next());
+       console.log(obj.entries().next());
+       console.log(obj.entries().next());
+
+       //some (se pelo menos 1 item no array passar no teste retorna true)
+
+       document.write(`<br> some : ${main_array.some(item => typeof item === 'string')}`);
+
+       //retorno de objetos em arrow functions
+       var return_obj = ()=>({
+           name : 'king',
+           lastName : 'of shadows'
+       })
+       console.log(return_obj);
+
+
    </script>
 </body>
 </html>

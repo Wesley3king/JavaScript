@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objeto screen</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>aula 66 - objeto Screen</h1>
+    </header>
+
+    <script>
+        // width and height (total do tamanho da tela em px)
+        document.write(`W = ${screen.width}px / H = ${screen.height}px`);
+
+        // availWidth and availHight (total da altura disponivel para o browser)
+        document.write(`<br>availWidth : ${screen.availWidth}px / availHeight : ${screen.availHeight}px`);
+
+        //colorDepth (profundidade das cores)
+        document.write(`<br>profundidade das cores : ${screen.colorDepth} bits`);
+
+        //pixelDepth (resolução da cor da tela em bits/px)
+        document.write(`<br>pixelDepth : ${screen.pixelDepth} bits/px`);
+    </script>
+</body>
+</html>
