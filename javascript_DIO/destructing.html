@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>destructing em js</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>destructing em JavaScript</h1>
+    </header>
+
+    <script>
+        var arr1 = [1, 2, 3, 4, 5], obj1 = { name: 'king', lastName: 'shadows'}, obj_arr = { color : ['red', 'blue', 'green']}, obj_arr_obj = { ana: [{lastname: 'smith',herFriend: 'heather hills'}]}, obj_in_the_array = [{fruits : ['apple','abacaxi']}];
+                //      destructing
+        //destructing em um array
+        var [one,two,tree,four,five] = arr1;
+        document.write(`array : ${one} / ${two} / ${tree} / ${four} / ${five}`);
+
+        //destructing em um objeto
+        var {name} = obj1;
+        document.write(`<br>object : ${name}`);
+
+        //pegando dois iten de um object e modificando seus nomes com destructing
+        var {name: nome,lastName} = obj1;
+        document.write(`<br>double param : ${nome} / ${lastName}`);
+
+        //array dentro do objeto (quatro retorna undefined já que não existe)
+        var {color :[um,dois,tres, quatro]} = obj_arr;
+        document.write(`<br>array in the object : ${um} / ${dois} / ${tres} / ${quatro}`);
+
+        //objeto em um array em um objeto
+        var {ana: [{lastname: sobrenome, herFriend: sua_amiga}]} = obj_arr_obj;
+        document.write(`<br>object in the array in the object : ${sobrenome} / ${sua_amiga}`)
+
+        //array em um objeto em um array
+        var [{fruits : [maça,pineapple]}] = obj_in_the_array;
+        document.write(`<br>array in the object in the array : ${maça} / ${pineapple}`)
+    </script>
+</body>
+</html>
