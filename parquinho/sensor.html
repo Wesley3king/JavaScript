@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste de movimento</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            text-align: center;
+
+        }
+        #one{
+            width: 100px;
+            height: 100px;
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>teste de movimento</h1>
+    </header>
+    <main id="one" draggable="true"></main>
+    <noscript id="v1"></noscript>
+    <noscript id="v2"></noscript>
+
+    <script>
+        //incompleto
+        var W,Y;
+        $('#one').on({
+        DragEvent: (event)=>{
+                   W = event.pageX, Y = event.pageY
+                   console.log(W+ '' + Y)
+            },
+            mousemove: ()=>{
+
+            },
+            keyup: ()=>{
+
+            }
+        })
+    </script>
+</body>
+</html>
