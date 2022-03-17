@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>propagação e como para-la</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        main{
+            width: 90%;
+            height: 250px;
+            border: 2px solid black;
+        }
+        div{
+            width: 50%;
+            height: 200px;
+            border: 2px solid rgb(255, 0, 0);
+            margin: 20px;
+        }
+        span{
+            display: block;
+            width:300px;
+            height: 150px;
+            border: 2px solid rgb(40, 196, 25);
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>propagação e como para-la com jQuery</h1>
+    </header>
+    <main>
+        <div>
+            <span></span>
+        </div>
+    </main>
+    <script>
+        $('span').click((event)=>{
+            window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+        });
+        $('div').click((event)=>{
+window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+        });
+        $('main').click((event)=>{
+window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+        });
+        $(document).click()
+    </script>
+</body>
+</html>
