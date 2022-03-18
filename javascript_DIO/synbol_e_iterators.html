@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol e iterators</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Symbol and Iterators</h1>
+    </header>
+    <main>
+        <input id="zero" type="text">
+        <button onclick="verificar()">send</button>
+    </main>
+    <script>
+        //exemplo (pode tornar as variaveis não acesaveis)
+        var arr = [1, 2, 3, 4];
+        var it = arr[Symbol.iterator]();
+        delete arr;
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+
+        for (const valor of it) {
+            console.log(valor);
+        }
+
+        // teste de dados
+        var retorno = {
+            name : 'king',
+            reading : [{cod: 34, mark : [13, 45, 34]},{cod: 39, mark : [63, 75, 84]},{cod: 341, mark : [131, 455, 374]}],
+            favorites : [13, 47, 85, 797],
+            finalized: [123, 465, 854]
+        }
+
+        var many = retorno.reading.length;
+        document.write(`mangás : ${many}`);
+
+        //estarindo os dados
+        var fav = new Array();
+        var obj_fav = new Array();
+
+        for (let valor of retorno.reading) {
+            fav.push(valor.cod);
+            obj_fav.push(valor);
+        }
+        console.log(fav);
+        console.log(obj_fav)
+
+
+        function verificar () {
+            let valor = window.document.querySelector('#zero').value;
+            let z = valor;
+            delete valor;
+            document.write(z)
+
+        }
+    </script>
+</body>
+</html>
