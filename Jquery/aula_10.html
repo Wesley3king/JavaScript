@@ -41,15 +41,19 @@
     </main>
     <script>
         $('span').click((event)=>{
-            window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+            window.alert(`o elemento ${event.target.tagName} disparou esta menssagem`);
+            event.stopPropagation();
+        
         });
         $('div').click((event)=>{
-window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+            window.alert(`o elemento div disparou esta menssagem`);
+            event.stopPropagation();
+
         });
         $('main').click((event)=>{
-window.alert(`o elemento ${event.wich} disparou esta menssagem`)
+            window.alert(`o elemento main disparou esta menssagem`);
         });
-        $(document).click()
+        
     </script>
 </body>
 </html>
