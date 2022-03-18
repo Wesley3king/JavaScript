@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generators</title>
+</head>
+<body>
+    <header>
+        <h1>Generators</h1>
+    </header>
+    <main>
+        <p>vide in console</p>
+    </main>
+    <script>
+        //exemplo 1
+        function* numero () {
+            let num = 0;
+            while (true) {
+                yield num;
+                ++num;
+            }
+        }
+        const it = numero();
+        //pode imprimir numeros infinitamente só qundo solicitado
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value + '\n------');
+
+        //exemplo 2
+        var obj = {
+            valores: [1, 2, 3, 4],
+            *[Symbol.iterator]() {
+                for (let i = 0; i < this.valores.length;++i) {
+                    yield this.valores[i];
+                }
+            }
+        }
+
+        for(let vv of obj) {
+            console.log(vv);
+        }
+    </script>
+</body>
+</html>
