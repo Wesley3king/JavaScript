@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch API e async/await</title>
+</head>
+<body>
+    <header>
+        <h1>fetch API e async/await</h1>
+    </header>
+
+    <script>
+        //fetch API
+        fetch('./data.json')
+        .then(responseStream => {
+            //console.log(responseStream)
+            if(responseStream.status === 200) {
+                return responseStream.json()             
+            }
+        })
+        .then(data => {
+            console.log(data)
+        }).catch(err => console.log('ERRO!', err));
+
+        // fetch async/await
+        const assets = ['data.json', 'data2.json'];
+        var dados = [[],[]];
+        let dt = [];
+
+         async function request (address) {
+           return fetch(`./${address}`).then(responseStream => {
+                if(responseStream.status === 200) {
+                    return responseStream.json();
+                }
+            }).then(semiData => {return semiData;});
+        }
+        async function controle () {
+            //var data1 = request(assets[0]);
+            //var data2 = request(assets[]);
+            var arr = [await request(assets[0]), await request(assets[1])]
+            return arr;
+        }
+        controle().then(v => console.log(v))
+        //document.write(dados[0][0],dados[0][1]);
+
+
+        //exemplo Mozilla
+        function resolverDepoisDe2Segundos(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+}
+
+async function adicionar1(x) {
+  var a = resolverDepoisDe2Segundos(20);
+  var b = resolverDepoisDe2Segundos(30);
+  return x + await a + await b;
+}
+
+adicionar1(10).then(v => {
+  console.log(v);  // exibe 60 depois de 2 segundos.
+});
+    </script>
+</body>
+</html>
