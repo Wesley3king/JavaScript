@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callbacks e promises</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>callbacks e promises em js</h1>
+    </header>
+
+    <script>
+        //callbacks
+
+        function retornar (callback) {
+            setTimeout(function () {
+                callback('primeiro dado');
+            }, 1000)
+        }
+        
+        //promises
+        // "throw new Error('...')" emula um erro no script
+
+        const responder1 = ()=> new Promise((resolve, reject) => {
+            //throw new Error('something is wrong');
+            setTimeout(function () {
+                resolve('first data');
+            }, 1000)
+        })
+
+        const responder2 = () => new Promise((resolve, reject)=>{
+            setTimeout(function () {
+                resolve('second data')
+            }, 1000)
+        })
+
+        //executando responder1
+        responder1()
+        .then(data => console.log(data))
+        .catch(err => console.log('ERRO! : ' + err));
+
+        //multiplas respostas async com all() (retorna um array/matriz)
+        Promise.all([responder1(), responder2()])
+        .then(data => console.log(data));
+
+        //quem respondeu primeiro com race()
+        Promise.race([responder1(), responder2()])
+        .then(dado => console.log(`race : ${dado}`))
+    </script>
+</body>
+</html>
