@@ -1,18 +1,14 @@
+
 {
-  "name": "typescript_dio",
+  "name": "typescript",
   "version": "1.0.0",
-  "description": "nothing",
-  "main": "introducao.ts",
+  "description": "no-descripton",
+  "main": "index.js",
   "scripts": {
-    "test": "no"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
   },
-  "repository": {
-    "type": "git",
-    "url": "no"
-  },
-  "keywords": [
-    "yes"
-  ],
-  "author": "wesley de moraes",
-  "license": "MIT"
+  "author": "king of shadows",
+  "license": "ISC"
 }
