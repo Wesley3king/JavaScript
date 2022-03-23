@@ -1,0 +1,18 @@
+{
+  "name": "typescript_dio",
+  "version": "1.0.0",
+  "description": "nothing",
+  "main": "introducao.ts",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "keywords": [
+    "yes"
+  ],
+  "author": "wesley de moraes",
+  "license": "MIT"
+}
