@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objeto location</title>
+    <style>
+        body{
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#68 - Objeto Location</h1>
+    </header>
+    <main>
+        <a href="./page.html">voltar a pagina de redirecionamento!</a>
+        <hr>
+        <a href="./href.html" target="_blank">exemplo de redirecionamento</a>
+        <hr>
+    </main>
+    <script>
+        // metodo hash
+        var parametros = location.hash;
+        if (parametros[1] !== undefined){
+        console.log(parametros);
+        var pronto = parametros.split('#');
+        console.log(pronto);
+        }
+        //metodo host/hostname (para ver o nome do host)
+        document.write('nome do host : ' + location.host);
+        document.write('<br> nome do hostname : ' + location.hostname);
+
+        //href (obtem a url completa)
+        document.write(`<br>url : ${location.href}`);
+
+        //origin (protocolo / hostname / porta)
+        document.write(`<br> origin : ${location.origin}`);
+
+        //pathname (caminho da url)
+        document.write(`<br> pathname : ${location.pathname}`);
+
+        //port (numero da porta)
+        document.write(`<br> port : ${location.port}`)
+
+        //protocol (retorna o protocolo);
+        document.write(`<br> protocol : ${location.protocol}`);
+
+        //search (semelhate ao hash)
+        var comun = location.search;
+        console.log(comun);
+        if(comun[1] !== undefined) {
+            var cortado  = comun.split('?');
+            console.log(cortado);
+            console.log(parseInt(cortado[2]), typeof parseInt(cortado[2]));
+        }
+    </script>
+</body>
+</html>
