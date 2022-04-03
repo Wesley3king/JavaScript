@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waiting...</title>
+</head>
+<body>
+    <header>
+        <h1>pagina de redirecionamento</h1>
+    </header>
+
+    <script>
+        //recebe o tipo de redirecionamento utilizado
+        var t = location.hash;
+        var sell = t.split('#');
+
+        if (sell[1] === 'assign') {
+            //assign (redireciona para outra pagina como href, só que é especifico para isso)
+            location.assign('https://youtube.com');
+        } else if (sell[1] === 'replace') {
+            //faz o mesmo que assihn só que não marca o histórico
+            location.replace('https://youtube.com/cfbcursos')
+        }
+    </script>
+</body>
+</html>
