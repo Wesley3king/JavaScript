@@ -21,6 +21,17 @@
         .cor{
             padding: 10px;
         }
+        #conf{
+            width: 70vw;
+            margin: auto;
+           border: 1px solid black;
+           padding: 10px;
+           background-color: rgba(128, 128, 128, 0.753);
+           display: none;
+        }
+        #conf.visible{
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +40,9 @@
     </header>
     <main>
         <div>
+            <button onclick="showConf()">settings</button>
+        </div>
+        <div id="conf">
             <h2>&gt; estilizar</h2>
             <div class="centralizar">
                 <h3>background-color</h3>
@@ -74,7 +88,6 @@
                 <label for="cor">black</label>
                 <input type="radio" name="cor" onclick="setStyle(2,null,2)" value="black">
             </div>
-            <button onclick="setStyle(3)">save</button>
         </div>
     </main>
     <script>
@@ -132,6 +145,9 @@
                                 esc[0] = "lightblue";
                             break;
                         }
+                        localStorage.removeItem("style");
+                    localStorage.style = esc;
+                    configurar();
                     break;
                     case 2: 
                     //set color
@@ -143,9 +159,6 @@
                         esc[1] = "black";
                         break;
                     }
-                    break;
-                    case 3: 
-                    //  save!
                     localStorage.removeItem("style");
                     localStorage.style = esc;
                     configurar();
@@ -178,6 +191,10 @@ configurar();
                 cCor.forEach(item => {if (item.value === esc[1]) {item.checked = true;}})
             }
             setMarkup();
+
+            function showConf () {
+                window.document.getElementById("conf").classList.toggle("visible");
+            }
     </script>
 </body>
 </html>
