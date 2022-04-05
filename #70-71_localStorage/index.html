@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .alinhar{
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .centralizar{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .cor{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>localStorage (webStorage)</h1>
+    </header>
+    <main>
+        <div>
+            <h2>&gt; estilizar</h2>
+            <div class="centralizar">
+                <h3>background-color</h3>
+                <div class="alinhar">
+                    <label for="background">black</label>
+                    <input type="radio" name="background" onclick="setStyle(1,1)" value="black">
+                </div>
+
+                <div class="alinhar">
+                    <label for="background">white</label>
+                    <input type="radio" name="background" onclick="setStyle(1,2)" value="white">
+                </div>
+
+                <div class="alinhar">
+                    <label for="background">red</label>
+                    <input type="radio" name="background" onclick="setStyle(1,3)" value="red">
+                </div>
+
+                <div class="alinhar">
+                    <label for="background">green</label>
+                    <input type="radio" name="background" onclick="setStyle(1,4)" value="green">
+                </div>
+
+                <div class="alinhar">
+                    <label for="background">lime</label>
+                    <input type="radio" name="background" onclick="setStyle(1,5)" value="lime">
+                </div>
+
+                <div class="alinhar">
+                    <label for="background">blue</label>
+                    <input type="radio" name="background" onclick="setStyle(1,6)" value="blue">
+                </div>
+                
+                <div class="alinhar">
+                    <label for="background">lightblue</label>
+                    <input type="radio" name="background" onclick="setStyle(1,7)" value="lightblue">
+                </div>
+            </div>
+            <div class="cor">
+                <h3>color</h3>
+                <label for="cor">white</label>
+                <input type="radio" name="cor" onclick="setStyle(2,null,1)" value="white">
+                <label for="cor">black</label>
+                <input type="radio" name="cor" onclick="setStyle(2,null,2)" value="black">
+            </div>
+            <button onclick="setStyle(3)">save</button>
+        </div>
+    </main>
+    <script>
+        //criando localStorages && testando a compatibilidade
+        var pass = false;
+        if (typeof(Storage) != "undefined"){
+        localStorage.setItem("first","king is ");
+        //          - || -
+        localStorage.item=3;
+
+        //pegando seu valor e fazendontestes com arrays
+        var array = ["one","two",["three","k1","k2"]];
+        localStorage.setItem("favorities",array);
+        console.log(typeof localStorage.favorities,localStorage.favorities);
+
+
+        var transformed = new Array(localStorage.favorities);
+        console.log(transformed);
+
+        //excluindo web storage  apaga favorities
+        localStorage.removeItem("favorities");
+
+        //final criando configuraçãoes de interface
+        //verificacao para configurar
+            pass = true;
+
+        }else{document.write("broswer incompativel com \"webStorage\"")}
+        
+        var esc = ["white","black"];
+        function setStyle (type,bck = null,color = null) {
+            if (pass) {
+                switch (type) {
+                    case 1: 
+                    //set background
+                        switch (bck) {
+                            case 1: 
+                                esc[0] = "black";
+                            break;
+                            case 2: 
+                                esc[0] = "white";
+                            break;
+                            case 3: 
+                                esc[0] = "red";
+                            break;
+                            case 4: 
+                                esc[0] = "green";
+                            break;
+                            case 5: 
+                                esc[0] = "lime";
+                            break;
+                            case 6: 
+                                esc[0] = "blue";
+                            break;
+                            case 7: 
+                                esc[0] = "lightblue";
+                            break;
+                        }
+                    break;
+                    case 2: 
+                    //set color
+                    switch (color) {
+                        case 1: 
+                        esc[1] = "white";
+                        break;
+                        case 2: 
+                        esc[1] = "black";
+                        break;
+                    }
+                    break;
+                    case 3: 
+                    //  save!
+                    localStorage.removeItem("style");
+                    localStorage.style = esc;
+                    configurar();
+                    break;
+                }
+            }
+        }
+        function configurar () { 
+                if (localStorage.style !== undefined) {
+                    let v = localStorage.style;
+                    let go = v.split(",");
+                    console.log(go);
+                    esc = go;
+                    window.document.body.style.backgroundColor=go[0];
+                    window.document.body.style.color=go[1];
+                }else{
+                    localStorage.style = esc;
+                    window.document.body.style.backgroundColor=esc[0];
+                    window.document.body.style.color=esc[1];
+                }
+            }
+configurar();
+
+//apenas um teste
+
+            function setMarkup () {
+                let cBck = window.document.getElementsByName("background");
+                cBck.forEach(item => {if (item.value === esc[0]) {item.checked = true;};console.log(esc[0],item.value)})
+                let cCor = window.document.getElementsByName("cor");
+                cCor.forEach(item => {if (item.value === esc[1]) {item.checked = true;}})
+            }
+            setMarkup();
+    </script>
+</body>
+</html>
