@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <header>
+        <h1>sessionStorage - pagina II</h1>
+    </header>
+    <main>
+        <p id="painel"></p>
+        <button onclick="remover()">limpar sessão</button>
+    </main>
+
+    <script>
+        const show = window.document.getElementById("painel");
+
+        var valor = sessionStorage.texto;
+        show.innerText = `ultimo valor recebido na pagina anterior : ${valor? valor: "não foi recebido nenhum valor"}`;
+
+        //zerando o session
+        function remover () {
+            sessionStorage.removeItem("texto");
+        }
+    </script>
+</body>
+</html>

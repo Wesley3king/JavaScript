@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 72 - sessionStorage</title>
+</head>
+<body>
+    <header>
+        <h1># 72 - sessionStorage</h1>
+    </header>
+    <main>
+        <input type="text" id="formulario"/>
+        <p id="painel"></p>
+        <hr>
+        <button onclick="next()">go to next page</button>
+    </main>
+
+    <script>
+        const element = window.document.querySelector("#formulario");
+        const show = window.document.getElementById("painel");
+
+        element.addEventListener("keyup", ()=>{
+            sessionStorage.texto = element.value;
+            show.innerText = `valor na sessão : ` + sessionStorage.getItem("texto");
+        })
+
+        function next () {
+            location.assign("./read.html");
+        }
+
+
+    </script>
+</body>
+</html>
