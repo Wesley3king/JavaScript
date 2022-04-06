@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas 73 e 74</title>
+</head>
+<body>
+    <header>
+        <h1># 73/74 - </h1>
+    </header>
+    <main>
+        <section>
+            <h2>73 - createElement (textContent())</h2>
+            <input type="text" id="inp1">
+            <button onclick="printNum()">write</button>
+            <div class="recebe"></div>
+        </section>
+        <section>
+            <hr>
+            <h2>#74 - createAttribute/removeAttribute</h2>
+            <ul id="list">
+                <li>cfb cursos</li>
+                <li>curso em video</li>
+                <li>youtube.com</li>
+                <li>dev media</li>
+                <li>hora de codar</li>
+            </ul>
+            <button onclick="fun()">destacar aleatoriamente</button>
+        </section>
+    </main>
+
+    <script>
+        //#73
+        //generator
+        function* num () {
+            let num = 0;
+            while (true) {
+                yield num;
+                ++num;
+            }
+        }
+        const chamar = num();
+        function printNum () {
+            let p = window.document.createElement("p");
+            let valor = document.querySelector('#inp1').value;
+            p.textContent = `${chamar.next().value} - ${valor}`;
+            document.querySelector(".recebe").appendChild(p);
+        }
+
+        // #74 createAttribute
+
+        var p = document.getElementsByTagName("li");
+        
+        function fun () {
+                let n = Math.round(Math.random()*4);
+                console.log(n)
+                let estilo = document.createAttribute("style");
+                estilo.value = "color: red;font-family:ubuntu,sans-serif";
+                for(let i=0 ; i< p.length;++i) {
+                    
+                    p[i].removeAttribute("style");
+                
+                }
+                p[n].setAttributeNode(estilo);
+        }
+    </script>
+</body>
+</html>
