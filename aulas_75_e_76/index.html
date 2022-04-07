@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isertBefore childNodes e replaceChild</title>
+    <style>
+        ul{
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#75 e 76 - isertBefore childNodes e replaceChild</h1>
+    </header>
+    <main>
+        <section>
+            <h2>isertBefore e childNodes</h2>
+
+            <input type="text" id="add">
+            <button type="submit" onclick="addd()">adicionar</button>
+            <button type="submit" onclick="show_many()">quantidade</button>
+
+            <ul id="list">
+
+            </ul>
+        </section>
+        <section>
+            <h2>replaceChild</h2>
+
+            <ul id="mm">
+                <li>PHP</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>JavasScript</li>
+                <li>C</li>
+                <li>C++</li>
+                <li>C#</li>
+            </ul>
+            <button onclick="modificar()">substituir JS</button>
+        </section>
+    </main>
+
+    <script>
+        //childNodes pega todos os child de um elemento;
+        //isertBefore coloca um elemento HTML em um determinado local || de cima para baixo(com childNodes);
+        const lista = document.querySelector("#list");
+        const inp = document.querySelector("#add");
+
+        function show_many() {
+            alert(`elementos dentro da ul : ${--lista.childNodes.length}`);
+        }
+
+        function addd () {
+            let valor  = inp.value;
+            //deve ser colocado no 2 elemento
+            let novo = window.document.createElement("li");
+            novo.textContent = `${valor}`;
+            let quan = lista.childNodes;
+            lista.insertBefore(novo,quan[2]);
+
+        }
+
+        //replaceChild substitui um elemento HTML por outro;
+        const local = window.document.querySelector("#mm");
+        const js = local.childNodes;
+        console.log(local.childNodes);
+        const ready = js[7];
+        console.log(ready.innerText);
+        function modificar () {
+            let node = document.createElement("li");
+            node.textContent = `NodeJS (JavaScript)`
+            node.style.color = "darkred";
+            local.replaceChild(node,ready);
+        }
+
+    </script>
+</body>
+</html>
