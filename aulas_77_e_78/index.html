@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parentNode, remove e removeChild</title>
+</head>
+<body>
+    <header>
+        <h1># 77 - parentNode, remove e removeChild</h1>
+    </header>
+    <main>
+        <ul>
+            <li id="one">JavaScript/nodeJS</li>
+            <li>PHP</li>
+            <li>HTML/CSS</li>
+            <li>Java</li>
+            <li id="two">TypeScript</li>
+        </ul>
+    </main>
+
+    <script>
+        //# 77 parentNode, remove e removeChild
+        //parentNode - obtem o pai do elemento;
+        var ul = window.document.querySelector("#one").parentNode;
+
+        //remove() - remove o elemento;
+        document.querySelector("#two").remove();
+        // removeChild() - remove um filho;
+        var lis = ul.childNodes;
+        ul.removeChild(lis[5]);
+    </script>
+</body>
+</html>
