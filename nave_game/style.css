@@ -1,0 +1,17 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+#placar{
+    
+}
+.borda{
+    width: 100px;
+    height: 15px;
+    border: 1px solid black;
+}
+.barra{
+    width: 100px;
+    height: 15px;
+    background-color: red;
+}
