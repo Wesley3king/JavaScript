@@ -46,5 +46,14 @@ body{
     background-color: black;
 }
 .bomb{
-
+    width: 24px;
+    height: 40px;
+    background-image: url('./bomba.gif');
+    position: absolute;
+}
+.explosion{
+    width: 70px;
+    height: 70px;
+    background-image: url('./explosao_ar.gif');
+    position: absolute;
 }
