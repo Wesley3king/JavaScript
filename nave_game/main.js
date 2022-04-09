@@ -49,6 +49,15 @@ function movimento () {
     player.style.left = `${playerX}px`;
     player.style.top = `${playerY}px`;
 }
+function atirar (x,y) {
+    let tiro = document.createElement("div");
+    tiro.setAttribute("class","tiro");
+    let classe = document.createAttribute("style");
+    classe.value = `top: ${y}px;left: ${x}px;`;
+    tiro.setAttributeNode(classe);
+    document.body.appendChild(tiro);
+}
+
 
 iniciar();
 function Tdown (tecla) {
@@ -66,7 +75,7 @@ function Tdown (tecla) {
     }
 
     if (valor === 32) {//espaço
-
+        atirar(playerX+12,playerY);
     }
 }
 
@@ -77,8 +86,5 @@ function Tup (tecla) {
     }
     if ((valor === 38) || (valor === 40)) {
         timedirY = 0;
-    }
-    if (valor === 32) {
-        
     }
 }

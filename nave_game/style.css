@@ -38,6 +38,13 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
+.tiro{
+    position: absolute;
+    width: 6px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: black;
+}
 .bomb{
 
 }
