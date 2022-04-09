@@ -17,7 +17,7 @@ function  iniciar () {
     velTiros = velocidade = 3;
     velbomb = 2;
 
-    playerX = (width/2)-30;
+    playerX = (width/2)-15;
     playerY = 100;
     life = 100;
     
@@ -26,7 +26,7 @@ function start () {
     jogo = true;
     vitória.style.display= "none";
     clearInterval(intBomb);
-    intBomb = setInterval(bombardear,1700);
+    intBomb = setInterval(bombardear,5000);
     controle_animation();
 }
 
@@ -74,24 +74,36 @@ function controle_tiros () {
             let pst = tiros[i].offsetTop;
             pst -= velTiros;
             tiros[i].style.top= `${pst}px`;
-            let min = tiros[i].offsetLeft;
-            let max = min+6;
 
-            for (let e = 0; e < bombas_ativas.length; ++e) {
-                let bn = bombas_ativas[e].offsetTop;
-                let bx = bn+24;
-                if ( max >= bn || min <= bx ) {
-                    bombas_ativas[e].setAttribute("class","explosion");
-                    tiros[i].remove();
-                    setTimeout(()=> bombas_ativas[e].remove(), 2000);
-                }
-            }
+            colisao(tiros[i]);
             if (pst < 0 && tiros[i] !== undefined) {
                 tiros[i].remove();
             }
             
         }
     }
+}
+function colisao (tiro) {
+    let min = tiro.offsetLeft;
+
+    for (let e = 0; e < bombas_ativas.length; ++e) {
+        if (bombas_ativas[e]) {
+        let basd = bombas_ativas[e];
+        let bn = basd.offsetLeft;
+        let bont = basd.offsetTop;
+        let tiroTop = tiro.offsetTop;
+        let tiroL = tiro.offsetLeft;
+
+        console.log(((min+6) >= bn) && (tiroL <= (bn +24))? "colidiu" : "no!" + `${(((min+6) >= bn) && (tiroTop <= (bn +24))) && ((tiroTop <= (bont+40)) && ((tiroTop+6) >= bont))}`);
+
+        if (((min+6) >= bn) && (tiroL <= (bn +24)) && ((tiroTop <= (bont+40)) && ((tiroTop+6) >= bont))) {
+
+            basd.setAttribute("class","explosion");
+            //bombas_ativas[e].remove();
+            tiro.remove();
+            setTimeout(()=> basd.remove(), 2000);
+        }
+    }}
 }
 function bombardear () {
     let bomb = document.createElement("div");
