@@ -6,14 +6,14 @@ var width = window.innerWidth, height = window.innerHeight,barraW = 100, barraH 
 var timedirX = 0, timedirY = 0, playerX, playerY;
 
 //controles
-var jogo = false, animation, velocidade, pontos = 150;
+var jogo = false, animation, velocidade,velTiros, pontos = 150;
 
 function  iniciar () {
     document.addEventListener("keydown",Tdown);
     document.addEventListener("keyup",Tup);
     vitória.setAttribute("onclick","start()");
     frase.textContent = "start";
-    velocidade = 3;
+    velTiros = velocidade = 3;
     playerX = (width/2)-30;
     playerY = 100;
     
@@ -29,6 +29,7 @@ function controle_animation () {
     if (jogo) {
         placar.innerHTML = pontos;
         movimento();
+        controle_tiros();
     }
     animation = requestAnimationFrame(controle_animation);
 }
@@ -49,6 +50,21 @@ function movimento () {
     player.style.left = `${playerX}px`;
     player.style.top = `${playerY}px`;
 }
+
+function controle_tiros () {
+    let tiros = document.getElementsByClassName("tiro");
+    for (let i = 0; i < tiros.length; ++i) {
+        if (tiros[i]) {
+            let pst = tiros[i].offsetTop;
+            pst -= velTiros;
+            tiros[i].style.top= `${pst}px`;
+            if (pst < 0) {
+                tiros[i].remove();
+            }
+        }
+    }
+}
+
 function atirar (x,y) {
     let tiro = document.createElement("div");
     tiro.setAttribute("class","tiro");
