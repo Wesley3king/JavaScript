@@ -4,10 +4,16 @@ var width = window.innerWidth, height = window.innerHeight,barraW = 100, barraH 
 
 //variaveis do jogador
 var timedirX = 0, timedirY = 0, playerX, playerY;
-
 //controles
-var jogo = false, animation, velocidade,velTiros,velbomb, bombas = 150, bombas_ativas,intBomb, life;
+var jogo = false;
+var animation, velocidade,velTiros,velbomb;
+var bombas = 150;
+var lvl = 0;
+var bombas_ativas,intBomb, life, restantes, level;
+var ind = 0, indsom = 0;
 
+
+console.log(lvl)
 function  iniciar () {
     document.addEventListener("keydown",Tdown);
     document.addEventListener("keyup",Tup);
@@ -18,21 +24,35 @@ function  iniciar () {
     velbomb = 2;
 
     playerX = (width/2)-15;
-    playerY = 100;
-    life = 100;
+    playerY = height/2;
     
 }
 function start () {
+    if (sessionStorage.level === undefined) {
+        sessionStorage.level = 0;
+    }else {
+        lvl = parseInt(sessionStorage.level);
+        sessionStorage.level = (parseInt(sessionStorage.level)+1);
+    }
+    level = (5000 - (500*lvl));
     jogo = true;
     vitória.style.display= "none";
+    restantes = 3;
+    life = 100;
+    barra.style.width = `${life}px`;
+    restantes = 3;
+    if (level === 0) {
+        level = 100;
+    }
     clearInterval(intBomb);
-    intBomb = setInterval(bombardear,5000);
+    console.log(level)
+    intBomb = setInterval(bombardear,level);
+    placar.textContent = `${restantes}`;
     controle_animation();
 }
 
 function controle_animation () {
     if (jogo) {
-        placar.innerHTML = bombas;
         movimento();
         controle_tiros();
         controle_bomba();
@@ -60,9 +80,13 @@ function controle_bomba () {
         let psb = bombas_ativas[i].offsetTop;
         psb += velbomb;
         bombas_ativas[i].style.top=`${psb}px`;
-        if (psb > height && bombas_ativas[i] !== undefined) {
+        if (psb > height /*&& bombas_ativas[i] !== undefined*/) {
+            explodir(false,bombas_ativas[i].offsetLeft, null);
             bombas_ativas[i].remove();
-            --life;
+            life-= 50;
+            barra.style.width = `${life}px`;
+            if (life <= 0)
+              win_or_lose(false);
         }
     }
 }
@@ -84,6 +108,7 @@ function controle_tiros () {
     }
 }
 function colisao (tiro) {
+    
     let min = tiro.offsetLeft;
 
     for (let e = 0; e < bombas_ativas.length; ++e) {
@@ -94,17 +119,61 @@ function colisao (tiro) {
         let tiroTop = tiro.offsetTop;
         let tiroL = tiro.offsetLeft;
 
-        console.log(((min+6) >= bn) && (tiroL <= (bn +24))? "colidiu" : "no!" + `${(((min+6) >= bn) && (tiroTop <= (bn +24))) && ((tiroTop <= (bont+40)) && ((tiroTop+6) >= bont))}`);
-
         if (((min+6) >= bn) && (tiroL <= (bn +24)) && ((tiroTop <= (bont+40)) && ((tiroTop+6) >= bont))) {
-
-            basd.setAttribute("class","explosion");
+            
+            explodir(true,bombas_ativas[e].offsetLeft-25, bombas_ativas[e].offsetTop);
             //bombas_ativas[e].remove();
+            bombas_ativas[e].remove();
             tiro.remove();
-            setTimeout(()=> basd.remove(), 2000);
+            --restantes;
+            placar.textContent = `${restantes}`;
+            if (restantes === 0) 
+              win_or_lose(true);
+            
         }
     }}
 }
+
+function explodir (tipo, x, y = 0) {
+    console.log(`x = ${x} // y = ${y}`);
+    //limites 
+    if(document.getElementById(`explosao${ind-5}`))
+    {
+        console.log("ta indo")
+        document.getElementById(`explosao${ind-5}`).remove();
+    }
+    let explode = document.createElement("div");
+    let img = document.createElement("img");
+    let som = document.createElement("audio");
+
+    //atributos
+    let estilo = document.createAttribute("style");
+        explode.setAttribute("id",`explosao${ind}`);
+
+        som.setAttribute("src","./exp1.mp3?"+indsom);
+        som.setAttribute("id" , `som${indsom}`);
+        explode.setAttribute("id",`explosao${ind}`);
+        
+
+    if (tipo) {//AR
+      explode.setAttribute("class","explosionAr");
+      estilo.value = `top: ${y}px;left: ${x}px;`;
+      img.setAttribute("src","./explosao_ar.gif?"+ind);
+    }else {//CHAO
+        explode.setAttribute("class","explosionChao");
+        estilo.value = `top: ${height - 53}px;left: ${x-17}px;`;
+        img.setAttribute("src","./explosao_chao.gif?"+ind);
+    }
+    explode.setAttributeNode(estilo);
+explode.appendChild(img);
+explode.appendChild(som);
+document.body.appendChild(explode);
+
+document.body.querySelector(`#som${indsom}`).play();
+    ind++,indsom++;
+
+}
+
 function bombardear () {
     let bomb = document.createElement("div");
     bomb.setAttribute("class","bomb");
@@ -123,7 +192,20 @@ function atirar (x,y) {
     tiro.setAttributeNode(classe);
     document.body.appendChild(tiro);
 }
-
+function win_or_lose (final) {
+    jogo = !jogo;
+    clearInterval(intBomb);
+    cancelAnimationFrame(animation);
+    vitória.style.display= "block";
+    vitória.setAttribute("onclick","restart()");
+    if (final) {
+        frase.innerHTML = `vitória! <br> <small style="font-size: 20px;">try Again</small>`;
+    }else {
+        vitória.style.backgroundColor = "red";
+        frase.innerHTML = `you lose! <br> <small style="font-size: 20px;">try Again</small>`;
+        sessionStorage.removeItem("level");
+    }
+}
 
 iniciar();
 function Tdown (tecla) {
@@ -153,4 +235,8 @@ function Tup (tecla) {
     if ((valor === 38) || (valor === 40)) {
         timedirY = 0;
     }
+}
+
+function restart () {
+        location.reload();
 }
