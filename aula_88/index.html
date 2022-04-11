@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>activeElement</title>
+    <link rel="stylesheet" href="./spinner_test.css">
+</head>
+<body>
+    <header>
+        <h1>#88 - activeElement</h1>
+    </header>
+    <main>
+        <section onclick="ativo()" id="fir">
+            <h2>primeiro tipo de uso</h2>
+            <br>
+            <input type="text">
+            <button>testar</button>
+            <p>cfb cursos</p>
+        </section>
+        <section id="sec">
+            <h2>segundo tipo de uso</h2>
+            <br>
+            <input type="text" id="inp">
+            <button>testar</button>
+            <p>cfb cursos</p>
+        </section>
+        <section>
+            <aside>
+                <div class="ytp-spinner" data-layer="4">
+                    <div class="gira1">
+                        <div class="gira2"></div>
+                    </div>
+                    <div>
+                        <div class="no">
+                            <div class="yes"></div>
+                            <div id="txt">57.4%</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script>
+        //first type
+        function ativo () {
+            console.log(document.activeElement.tagName);
+        }
+
+        //second type
+        document.getElementById("sec").addEventListener("click",resAdd);
+        var input = document.getElementById("inp");
+        var frame;
+        function resAdd () {
+            input.value = document.activeElement.tagName;
+            frame = requestAnimationFrame(resAdd);
+        }
+    </script>
+</body>
+</html>
