@@ -9,25 +9,30 @@ var jogo = false;
 var animation, velocidade,velTiros,velbomb;
 var bombas = 150;
 var lvl = 0;
-var bombas_ativas,intBomb, life, restantes, level;
-var ind = 0, indsom = 0;
+var bombas_ativas,intBomb, life, restantes, level, action;
+var ind = 0, indsom = 0, stt = 0;
 
+function cst (t) {
+    if (t.keyCode === 13)
+     start()
+}
 
-console.log(lvl)
 function  iniciar () {
-    document.addEventListener("keydown",Tdown);
-    document.addEventListener("keyup",Tup);
+    document.addEventListener("keydown", cst);
     vitória.setAttribute("onclick","start()");
     frase.textContent = "start";
     //velocidades
     velTiros = velocidade = 3;
-    velbomb = 2;
+    velbomb = 1;
 
     playerX = (width/2)-15;
     playerY = height/2;
     
 }
 function start () {
+    document.removeEventListener("keydown",cst);
+    document.addEventListener("keydown",Tdown);
+    document.addEventListener("keyup",Tup);  
     if (sessionStorage.level === undefined) {
         sessionStorage.level = 0;
     }else {
@@ -35,6 +40,7 @@ function start () {
         sessionStorage.level = (parseInt(sessionStorage.level)+1);
     }
     level = (5000 - (500*lvl));
+    console.log(lvl,sessionStorage.level);
     jogo = true;
     vitória.style.display= "none";
     restantes = 3;
@@ -80,7 +86,21 @@ function controle_bomba () {
         let psb = bombas_ativas[i].offsetTop;
         psb += velbomb;
         bombas_ativas[i].style.top=`${psb}px`;
-        if (psb > height /*&& bombas_ativas[i] !== undefined*/) {
+
+        
+        let bn = bombas_ativas[i].offsetLeft;
+        let bont = bombas_ativas[i].offsetTop;
+        let nvL = playerX;
+        //console.log((nvL) >= bn) || (nvL <= (bn +24));
+        if (((nvL+24) >= bn) && (nvL <= (bn +24)) && ((playerY <= (bont+40)) && ((playerY+30) >= bont))) {
+            
+            explodir(true,bombas_ativas[i].offsetLeft-25, bombas_ativas[i].offsetTop);
+            bombas_ativas[i].remove();
+            player.remove();
+            win_or_lose(false);
+            
+        }
+        if (psb > height) {
             explodir(false,bombas_ativas[i].offsetLeft, null);
             bombas_ativas[i].remove();
             life-= 50;
@@ -122,7 +142,6 @@ function colisao (tiro) {
         if (((min+6) >= bn) && (tiroL <= (bn +24)) && ((tiroTop <= (bont+40)) && ((tiroTop+6) >= bont))) {
             
             explodir(true,bombas_ativas[e].offsetLeft-25, bombas_ativas[e].offsetTop);
-            //bombas_ativas[e].remove();
             bombas_ativas[e].remove();
             tiro.remove();
             --restantes;
@@ -135,7 +154,7 @@ function colisao (tiro) {
 }
 
 function explodir (tipo, x, y = 0) {
-    console.log(`x = ${x} // y = ${y}`);
+    //console.log(`x = ${x} // y = ${y}`);
     //limites 
     if(document.getElementById(`explosao${ind-5}`))
     {
@@ -186,11 +205,16 @@ function bombardear () {
 
 function atirar (x,y) {
     let tiro = document.createElement("div");
+    let audio = document.createElement("audio");
+    audio.setAttribute("src", "./tiro.wav?"+stt);
+    audio.setAttribute("type","audio/wav");
     tiro.setAttribute("class","tiro");
     let classe = document.createAttribute("style");
     classe.value = `top: ${y}px;left: ${x}px;`;
     tiro.setAttributeNode(classe);
+    tiro.appendChild(audio);
     document.body.appendChild(tiro);
+    audio.play();
 }
 function win_or_lose (final) {
     jogo = !jogo;
