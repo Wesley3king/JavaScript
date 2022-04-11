@@ -1,4 +1,4 @@
-const player = document.querySelector("#player"), vitória = document.querySelector("#win"), placar = document.querySelector("#faltam"), frase = document.querySelector('#result'),barra = document.querySelector(".barra");
+const player = document.querySelector("#player"), vitória = document.querySelector("#win"), placar = document.querySelector("#faltam"), frase = document.querySelector('#result'),barra = document.querySelector(".barra"), nivel = document.querySelector("#nvv");
 //variaveis padrão
 var width = window.innerWidth, height = window.innerHeight,barraW = 100, barraH = 15;
 
@@ -23,7 +23,7 @@ function  iniciar () {
     frase.textContent = "start";
     //velocidades
     velTiros = velocidade = 3;
-    velbomb = 1;
+    velbomb = 2;
 
     playerX = (width/2)-15;
     playerY = height/2;
@@ -34,26 +34,30 @@ function start () {
     document.addEventListener("keydown",Tdown);
     document.addEventListener("keyup",Tup);  
     if (sessionStorage.level === undefined) {
-        sessionStorage.level = 0;
+        sessionStorage.level = 1;
+        lvl = 1;
     }else {
-        lvl = parseInt(sessionStorage.level);
         sessionStorage.level = (parseInt(sessionStorage.level)+1);
+        lvl = parseInt(sessionStorage.level);
+        
     }
-    level = (5000 - (500*lvl));
+    level = (5500 - (500*lvl));
     console.log(lvl,sessionStorage.level);
     jogo = true;
     vitória.style.display= "none";
-    restantes = 3;
     life = 100;
     barra.style.width = `${life}px`;
-    restantes = 3;
+    restantes = (15*lvl);
+    console.log((15*lvl));
     if (level === 0) {
         level = 100;
+        sessionStorage.level = 1;
     }
     clearInterval(intBomb);
     console.log(level)
     intBomb = setInterval(bombardear,level);
     placar.textContent = `${restantes}`;
+    nivel.textContent = `${lvl}`;
     controle_animation();
 }
 
@@ -93,7 +97,7 @@ function controle_bomba () {
         let nvL = playerX;
         //console.log((nvL) >= bn) || (nvL <= (bn +24));
         if (((nvL+24) >= bn) && (nvL <= (bn +24)) && ((playerY <= (bont+40)) && ((playerY+30) >= bont))) {
-            
+            barra.style.width = `0px`;
             explodir(true,bombas_ativas[i].offsetLeft-25, bombas_ativas[i].offsetTop);
             bombas_ativas[i].remove();
             player.remove();
@@ -103,7 +107,7 @@ function controle_bomba () {
         if (psb > height) {
             explodir(false,bombas_ativas[i].offsetLeft, null);
             bombas_ativas[i].remove();
-            life-= 50;
+            life-= 5;
             barra.style.width = `${life}px`;
             if (life <= 0)
               win_or_lose(false);
@@ -221,6 +225,7 @@ function win_or_lose (final) {
     clearInterval(intBomb);
     cancelAnimationFrame(animation);
     vitória.style.display= "block";
+    document.addEventListener("keydown", restart);
     vitória.setAttribute("onclick","restart()");
     if (final) {
         frase.innerHTML = `vitória! <br> <small style="font-size: 20px;">try Again</small>`;
