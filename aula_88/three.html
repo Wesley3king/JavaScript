@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>terceira forma</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#88 - terceira forma de usar o activeElement</h1>
+        <p>copia para a area de transferência</p>
+    </header>
+
+    <main>
+        <textarea id="txt" cols="20" rows="3"> CFB Cursos - aula 88 activeElement</textarea>
+
+        <p>texto selecionado : <span id="show"></span></p>
+    </main>
+
+    <script>
+        var ta = document.querySelector("#txt"), mostrar = document.querySelector("#show");
+
+        ta.addEventListener("mouseup",start);
+        function start () {
+            let recebe = document.activeElement;
+            mostrar.innerHTML = `${recebe.value.substring(recebe.selectionStart,recebe.selectionEnd)}`;
+
+            //copiar para a area de transferência
+            recebe.select();
+            document.execCommand("copy");
+            
+        }
+    </script>
+</body>
+</html>
