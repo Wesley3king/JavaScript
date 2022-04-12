@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 89 - hasFocus</title>
+    <style>
+        .off{
+            background-color: rgb(29, 29, 29);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#89 - hasFocus</h1>
+        <p>a resposta demora pelo seInterval estar configurado em 1s</p->
+    </header>
+    <main>
+        <p class="placa"></p>
+    </main>
+    <script>
+        var show = document.querySelector(".placa");
+
+        setInterval(()=> {
+            show.innerHTML = `a pagina ${document.hasFocus()?"":"NÃO "}está em foco`;
+             if (document.hasFocus())
+             document.body.setAttribute("class","");
+              else
+             document.body.setAttribute("class","off");
+            }, 1000);
+    </script>
+</body>
+</html>
