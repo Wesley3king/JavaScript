@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 92 - hidden</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .show{
+            width: 50vw;
+            height: 700px;
+            background-color: chartreuse;
+            margin: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#92 - atributo hidden</h1>
+        <p>oculta elementos</p>
+    </header>
+    <main>
+        <button id="bto">ocultar</button>
+        <div class="show"></div>
+    </main>
+
+    <script>
+        document.getElementById("bto").addEventListener("click",mostrar);
+
+        var estado = false;
+        const obj = document.querySelector(".show");
+        function mostrar () {
+            estado = !estado;
+            obj.hidden = estado;
+        }
+    </script>
+</body>
+</html>
