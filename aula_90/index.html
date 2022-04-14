@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>90 dataSet</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .red{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: auto;
+        }
+        .blue{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: auto;
+        }
+        .green{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: auto;
+        }
+        .imprimir{
+            width: 250px;
+            height: 60px;
+            margin: auto;
+            border: 2px solid black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#90 - dataSet</h1>
+    </header>
+    <main>
+        <div class="imprimir"></div>
+        <section>
+            <div class="red" data-valor="09"></div>
+            <div class="green" data-valor="77"></div>
+            <div class="blue" data-valor="31"></div>
+        </section>
+    </main>
+
+    <script>
+        const show = document.querySelector(".imprimir");
+
+        document.querySelector(".red").addEventListener("click",mostrar_valor);
+        document.querySelector(".green").addEventListener("click",mostrar_valor);
+        document.querySelector(".blue").addEventListener("click",mostrar_valor);
+
+        function mostrar_valor () {
+            let element = event.target.dataset;
+            show.innerHTML = `valor do elemento : ${element.valor}`
+        }
+    </script>
+</body>
+</html>
