@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 94 - cookies</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#94 - Cookies</h1>
+        <p>este é um exercicio para cookies</p>
+    </header>
+
+    <script>
+
+        function defineTimer () {
+            let mesN = new Date().getMonth(),mes;
+            let ye = new Date().getFullYear();
+            let dia = new Date().getDay(),day;
+
+            mesN++;
+
+            switch (mesN) {
+                case 0:
+                    mes = 'Jan';
+                    break
+                case 1:
+                    mes = 'Feb';
+                    break
+                case 2: 
+                    mes = 'Mar';
+                    break
+                case 3:
+                    mes = 'Apr';
+                    break
+                case 4:
+                    mes = 'May';
+                    break
+                case 5: 
+                    mes = 'Jun';
+                    break
+                case 6: 
+                    mes = 'Jul';
+                    break
+                case 7: 
+                    mes = 'Aug';
+                    break
+                case 8: 
+                    mes = 'Sep';
+                    break
+                case 9: 
+                    mes = 'Oct';
+                    break
+                case 10: 
+                    mes = 'Nov';
+                    break
+                case 11: 
+                    mes = 'Dec';
+                    break
+            }
+
+            switch (dia) {
+                case 0: 
+                    day = 'Sun';
+                    break
+                case 1: 
+                    day = 'Mon';
+                    break
+                case 2: 
+                    day = 'Tue';
+                    break
+                case 3: 
+                    day = 'Wed';
+                    break
+                case 4: 
+                    day = 'Thu';
+                    break
+                case 5: 
+                    day = 'Fri';
+                    break
+                case 6: 
+                    day = 'Sat';
+                    break
+            }
+            //pula para o proximo ano caso for dezembro;
+            if(mesN === 11) {
+                ++ye;
+                mes = 'Jan';
+            }
+            if (dia > 28) {
+                //define um limite para anos não bissextos
+                dia = 28;
+            }
+            console.log(ye);
+            console.log(mes,day,dia);
+
+            return `expires= ${day}, ${dia} ${mes} ${ye} 12:00:00 UTC`;
+        }
+        function createCookie(v) {
+            let expira = defineTimer();
+            document.cookie = `user= ${v};${expira}`;
+            console.log(document.cookie);
+        }
+
+
+        function read (n) {
+            let name = `${n}=`;
+            let cookies = document.cookie.split(";");
+
+            let vale = '';
+            cookies.forEach(item => {
+                let modded = item;
+                while(modded.charAt(0) == ' ') {
+                    modded = modded.substring(1);
+                }
+                if (modded.indexOf(name)===0) {
+                    vale =  modded.substring(name.length,modded.length);
+                }
+            })
+
+            if (vale === ''){
+                return "";
+            }else {
+                return vale;
+            }
+        }
+
+
+        function verificar () {
+            let valor = read("user");
+            if (valor != '') {
+                alert(`bem vindo ${valor}`);
+            }else{
+                let vp = prompt("digite seu nom de usuário");
+                createCookie(vp);
+            }
+        }
+        verificar()
+    </script>
+</body>
+</html>
