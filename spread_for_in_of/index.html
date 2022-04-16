@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spread - for in e of</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#97 até #99 - spread e loop for in e for of</h1>
+    </header>
+
+    <script>
+        // spread operator
+
+        const nomes = {n1: 'king',n2: 'of', n3: 'shadows'};
+        const notas = {t1: 70, t2: 68, t3: 90};
+        const total = {...nomes,...notas};
+
+        console.log(total);
+        document.write(`spread operator : ${total.n1}`);
+
+        //for in && for of
+
+        //for in (object)
+        for (let dado in total) {
+            console.log("key : "+dado);
+            console.log(`valor : ${total[dado]}`);
+        }
+
+        //for of (Array)
+        const numeros = [1, 24 ,43, 77, 3, 9,7];
+
+        console.log('\nfor of ');
+
+        for (let valor of numeros) {
+            console.log(valor);
+        }
+    </script>
+</body>
+</html>
