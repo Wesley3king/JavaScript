@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rest, e funcões</title>
+</head>
+<body>
+    <header>
+        <h1>#100 - 103  rest, funcões : anonimas, construtoras e arrow functions</h1>
+    </header>
+
+    <script>
+        //rest operator
+        function somar (...num) {
+            let result = 0;
+            num.forEach(item => result += item);
+            return result;
+        }
+        document.write(`rest operator : ${somar(1,3,4,6)}`);
+
+        //funções anonimas
+
+        var anonim = function () {
+            return true ? "anonima true" : "anonima false";
+        };
+        console.log(anonim());
+
+        //funções construtoras
+
+        var constroi = new Function("","document.write('<br> funções constutoras : CFB Cursos');");
+        constroi();
+
+        //arrow functions 
+
+        var flexa = ()=> true ? "flexa": "falha";
+        document.write(`<br>arrow functions : ${flexa()}`);
+    </script>
+</body>
+</html>
