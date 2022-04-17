@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas 105 até 108</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#105 até 108 - Obejetos literais, Iterators...</h1>
+    </header>
+
+    <script>
+        //Objetos literais
+        const obj = {item: "bicicleta",code: "01"}, obj2 = {tipo: "transporte",valor: 2000};
+
+        //copiando objetos
+        let obj_copia = Object.create(obj);
+        console.log(obj_copia);
+
+        //assign (concatenando objetos);
+        console.log(obj_copia,obj2);
+
+        //destructing
+        let {item: coisa} = obj_copia;
+        console.log(coisa);
+
+        //106 - metodos para array
+        let txt = "CFB Cursos - javascript";
+
+        //startsWith
+
+        console.log(txt.startsWith("C"))//true
+
+        //endsWith
+
+        console.log(txt.endsWith("cript"))//true
+
+        //includes
+
+        console.log(txt.includes("java"))//true
+
+        //repeat
+
+        document.write(`repeat : ${txt.repeat(2)}`);
+
+        //#107 - Iterators
+
+        let num = [3, 4, 5, 7,8];
+        let iter = num[Symbol.iterator]();
+
+        console.log(iter.next().value);
+        console.log(iter.next().value);
+        console.log(iter.next().value);
+
+        //#108 - objeto Map
+
+        var novo = new Map();
+        novo.set("key","value");
+        novo.set("02","veiculo");
+        novo.set("03","comida");
+
+        console.log(novo.get("key"));
+
+        for (v of novo) {
+            document.write(`<br> Map : ${v}`)
+        }
+
+                // - ou - 
+        
+        var facil = new Map([
+            ["key","value"],
+            ["02","veiculo"],
+            ["03","comida"]
+        ])
+
+        console.log(facil.get("02"));
+
+        document.write("<hr>Map já inicializado : ");
+
+        for (v of facil) {
+            document.write(`<br> Map : ${v}`)
+        }
+
+    </script>
+</body>
+</html>
