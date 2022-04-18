@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aulas 105 até 108</title>
+    <title>aulas 105 até 109</title>
     <style>
         body{
             text-align: center;
@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <h1>#105 até 108 - Obejetos literais, Iterators...</h1>
+        <h1>#105 até 109 - Obejetos literais, Iterators...</h1>
     </header>
 
     <script>
@@ -59,7 +59,7 @@
         console.log(iter.next().value);
         console.log(iter.next().value);
 
-        //#108 - objeto Map
+        //#108 e 109 - objeto Map
 
         var novo = new Map();
         novo.set("key","value");
@@ -87,6 +87,48 @@
         for (v of facil) {
             document.write(`<br> Map : ${v}`)
         }
+
+        //size 
+        console.log("------------/ --- / -----------");
+
+        console.log(`Map size : ${facil.size}`);
+
+        //clear()
+        let mp2 = new Map([["king", "of","shadows"],["js","html","css"]]);
+
+        mp2.clear();
+
+        console.log(mp2);
+
+        //delete
+
+        mp2.set("01","carro").set("02","casa");
+
+        mp2.delete("01");
+
+        console.log(mp2);
+
+        //forEach
+
+        facil.forEach(item => console.log(`forEach : ${item}`));
+
+        //keys() && values
+        console.log("------------/ --- / -----------");
+
+        let it1 = facil.keys();
+        let it2 = facil.values();
+
+
+        console.log(`key : ${it1.next().value} / valor : ${it2.next().value}`);
+        console.log(`key : ${it1.next().value} / valor : ${it2.next().value}`);
+        console.log(`key : ${it1.next().value} / valor : ${it2.next().value}`);
+
+        //has
+
+        console.log(facil.has("key")?"isto existe": "não existe");
+
+        
+
 
     </script>
 </body>
