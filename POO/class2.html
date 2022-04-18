@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 111 - meyodos e classes</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#111 - metodos em classes</h1>
+    </header>
+    <main>
+        <section>
+            <button class="alt">alterar cor</button>
+            <button class="tr">acionar</button>
+        </section>
+    </main>
+
+    <script>
+        class Dados {
+            constructor (cor) {
+                this.color = cor;
+                this.activeColor = "white"
+                this.background = false
+                this.body = document.querySelector("body");
+            }
+
+            onOff(){
+                this.background = !this.background;
+                console.log(`cor personalizada : ${this.background}`);
+                this.background?this.activeColor = this.color : this.activeColor = "white";
+            }
+
+            configurar(){
+                this.body.style.backgroundColor = this.activeColor;
+            }
+        }
+
+        var classe = new Dados("green");
+        document.querySelector(".alt").addEventListener("click",() => classe.onOff());
+        document.querySelector(".tr").addEventListener("click",()=>classe.configurar());
+
+    </script>
+</body>
+</html>
