@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas 114 e 115 - herança e prototype</title>
+</head>
+<body>
+    <header>
+        <h1>#114 e 115 - herança e prototype</h1>
+    </header>
+
+    <script>
+        //herança
+        class Carro {
+            constructor (vm, p){
+                this.velMax = vm;
+                this.passageiros = p;
+            }
+            info () {
+                console.log(`velocidade : ${this.velMax}\n capacidade : ${this.passageiros}`);
+            }
+        }
+
+        class CarroCorrida extends Carro{
+            constructor (v,p,n) {
+                super(v,p);
+                this.nitro = n;
+            }
+            info () {
+                super.info()
+                console.log(`turbo : ${this.nitro ? "ativado" : "desligado"}\n -----------------------`);
+            }
+            prot () {
+                console.log("guess who is back!");
+            }
+        }
+
+        var mercedez = new CarroCorrida(340, 1, true),Carnormal = new Carro(180, 5);
+
+        mercedez.info();
+
+        //prototype
+        Carnormal.prototype().velMax = 300;
+
+        Carnormal.info()
+    </script>
+</body>
+</html>
