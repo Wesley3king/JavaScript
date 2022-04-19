@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas 112 e 113 - classes</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#112 e 113 - set/get e static</h1>
+    </header>
+
+    <script>
+        class Classe{
+            constructor (nm) {
+                this.num = nm;
+
+            }
+
+            info () {
+                console.log(`log de num : ${this.num}`);
+            }
+            //set - configurar um valor/algo
+            set confnum (nv){
+                this.num = nv;
+            }
+            //get - obter o valor de algo
+            get rnum () {
+                return this.num;
+            }
+        }
+
+        var cl1 = new Classe(88);
+
+        cl1.info();
+        cl1.confnum = 23;
+        console.log(`log com get : ${cl1.rnum}`);
+
+        // static (quase cocmo um state em react)
+
+        class Statico {
+            static numero = 0;
+
+            info () {
+                console.log(`log de numero : ${Statico.numero}`);
+            }
+            set confnumero (x) {
+                Statico.numero = x;
+            }
+        }
+
+        var c1 = new Statico();
+        var c2 = new Statico();
+
+        c1.info();
+        c2.info();
+        
+        c1.confnumero = 12;
+
+        c1.info();
+        c2.info();
+
+    </script>
+</body>
+</html>
