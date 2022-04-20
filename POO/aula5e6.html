@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aulas 114 e 115 - herança e prototype</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -37,14 +42,26 @@
             }
         }
 
-        var mercedez = new CarroCorrida(340, 1, true),Carnormal = new Carro(180, 5);
+        var mercedez = new CarroCorrida(340, 1, true);
 
         mercedez.info();
 
         //prototype
-        Carnormal.prototype().velMax = 300;
+        var Carnormal = new Carro(180, 5);
 
-        Carnormal.info()
+        function soma (a, b) {
+            console.log(a+b);
+        }
+        //console.log(Carnormal.__proto__)
+        Carro.prototype.passageiros = 6;
+        console.log(`valor de prototipo de passageiros em carro : ${Carro.prototype.passageiros}`)
+        //altera o valor padrão de Carro.passageiros
+
+        //modificando uma funcao interna com prototype
+        Carro.prototype.info = function () {
+            console.log("hey hey")
+        }
+        Carnormal.info();
     </script>
 </body>
 </html>
