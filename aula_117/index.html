@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aila 117 - set</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#117 - set</h1>
+        <p>set funciona como um Map, por isso funciona com quase todos os métodos deste.</p>
+        <p>vide console</p>
+    </header>
+
+    <script>
+        var meuSet = new Set([1,2,3,4]);
+
+        //adicionado valores
+        meuSet.add(5);
+
+        //removendo valores (remove com seu valor como atributo)
+        meuSet.delete(3);
+
+        //lendp valores
+        for (v of meuSet) {
+            console.log(v);
+        }
+    </script>
+</body>
+</html>
