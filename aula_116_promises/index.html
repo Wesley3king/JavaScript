@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula 116 - promises</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#116 - promises</h1>
+        <p>permitem usar coisas assincronas como sincronas</p>
+    </header>
+
+    <script>
+        //modo assincrono (sem promise)
+        function resNOpromise (v) {
+            let cont = 0;
+               setTimeout(()=>{ while (cont <= v) {
+                    cont++;
+                }},2000);
+            return cont;
+        }
+
+        console.log(resNOpromise(10));
+
+        //modo assincrono (com promises)
+        console.log('-------------/--/---------------');
+       function respromise (v) {
+            let cont = 0;
+            let p = new Promise((res,rej) => {
+               setTimeout(function (){
+                   for (let i = 0;i < v; ++i){
+                       cont++;
+                    }
+                    //hora de responder
+                if (cont == v) {
+                    res(cont);
+                }else{
+                    rej('erro!');
+                    console.log("valor de cont : "+cont);
+                }},3000);
+            });
+            return p;
+        }
+
+        respromise(10)//a promise vai responde em 3s
+        .then(v => console.log(`promise : ${v}`))
+        .catch(e => console.log(e));
+    </script>
+</body>
+</html>
