@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas 121 e 122</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>#121 e 122 - reduce e json em JS</h1>
+    </header>
+
+    <script>
+        //reduce
+
+        let num = [1,35,7,68,79,7];
+        let convertido = num.reduce((total,valor) => {
+            return total + valor;
+        },0);
+        console.log(convertido);
+
+        //json
+        var js_on = {local: 'brasil/pr',estado: 'pr'};
+
+        //stringify - converte obj para json
+        let str = JSON.stringify(js_on);
+        console.log(str);
+
+        //parse
+
+        let pronto = JSON.parse(str);
+        console.log(pronto);
+    </script>
+</body>
+</html>
