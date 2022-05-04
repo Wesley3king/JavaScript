@@ -15,7 +15,7 @@
         .then((data)=> console.log(data))
         .catch(e => console.log(e));
         $.get('http://localhost:5000/',(data)=>{
-            console.log(data);
+            console.log(JSON.parse(data));
         })
     </script>
 </body>
