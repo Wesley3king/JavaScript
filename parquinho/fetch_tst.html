@@ -10,12 +10,13 @@
 <body>
     
     <script>
-        fetch('http://localhost:5000/')
+        fetch('http://ipinfo.io')
         .then((res)=> res.json())
         .then((data)=> console.log(data))
         .catch(e => console.log(e));
-        $.get('http://localhost:5000/',(data)=>{
-            console.log(JSON.parse(data));
+
+        $.get('http://api.ipify.org',(data)=>{
+            console.log(data);
         })
     </script>
 </body>
