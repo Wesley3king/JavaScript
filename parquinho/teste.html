@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste de html</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="images">
+        
+    </div>
+    
+    <script>
+        var local = window.document.querySelector("div#images");
+        var index = 0;
+        var lista = [
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/00.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/01.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/02.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/03.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/04.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/05.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/06.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/07.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/08.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/09.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/10.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/11.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/12.jpg",
+            "https://mangayabu.top/mangas2/eleceed/capitulo-155/13.jpg"
+        ];
+
+        /// scroll to
+        function scrollTo(index) {
+            var image = window.document.querySelector(`#img${index}`);
+            image.scrollIntoView();
+        }
+
+        window.addEventListener("scroll", (event) => {
+            // implement this
+        });
+
+        async function renderCore(src) {
+            const img = new Image();
+            img.setAttribute("id", `img${index}`);
+            img.onload = function() {
+                console.log(`width: ${this.width} - height: ${this.height}`);
+                img.setAttribute("width", `${window.innerWidth}px`);
+                img.setAttribute("height", `${(window.innerWidth * this.height) / this.width}px`);
+                local.appendChild(img);
+                index++;
+                machineRender();
+            }
+            img.src = src;
+        };
+
+        function machineRender() {
+            if (index < lista.length) {
+                renderCore(lista[index]);
+            }
+        }
+
+        machineRender();
+    </script>
+</body>
+</html>
