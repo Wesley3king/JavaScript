@@ -47,15 +47,15 @@
             image.scrollIntoView();
         }
 
-        window.addEventListener("scroll", (event) => {
-            // implement this
-        });
+        function sendResponse(indice) {
+            console.log(`index: ${indice}`);
+        }
 
         async function renderCore(src) {
             const img = new Image();
             img.setAttribute("id", `img${index}`);
             img.onload = function() {
-                console.log(`width: ${this.width} - height: ${this.height}`);
+                img.setAttribute("onclick", `sendResponse(${index})`)
                 img.setAttribute("width", `${window.innerWidth}px`);
                 img.setAttribute("height", `${(window.innerWidth * this.height) / this.width}px`);
                 local.appendChild(img);
