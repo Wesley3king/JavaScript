@@ -24,6 +24,7 @@
     <script>
         var local = window.document.querySelector("div#images");
         var index = 0;
+        var listaHeight = [];
         var lista = [
             "https://mangayabu.top/mangas2/eleceed/capitulo-155/00.jpg",
             "https://mangayabu.top/mangas2/eleceed/capitulo-155/01.jpg",
@@ -55,9 +56,13 @@
             const img = new Image();
             img.setAttribute("id", `img${index}`);
             img.onload = function() {
+                console.log(`h: ${this.height} = w: ${this.width} / r: ${(window.innerWidth * this.height) / this.width}`);
                 img.setAttribute("onclick", `sendResponse(${index})`)
                 img.setAttribute("width", `${window.innerWidth}px`);
-                img.setAttribute("height", `${(window.innerWidth * this.height) / this.width}px`);
+                // img.setAttribute("height", `${(window.innerWidth * this.height) / this.width}px`);
+                listaHeight.push(Number.parseFloat(this.height));
+
+                //img.height = ((window.innerWidth * this.height) / this.width);
                 local.appendChild(img);
                 index++;
                 machineRender();
@@ -67,7 +72,13 @@
 
         function machineRender() {
             if (index < lista.length) {
+                console.log(listaHeight)
                 renderCore(lista[index]);
+            } else {
+                var imgs = window.document.querySelectorAll('img');
+                for(let i = 0; i < imgs.length; ++i) {
+                    imgs[i].setAttribute("height", (window.innerWidth * this.height) / this.width+`px`);
+                }
             }
         }
 
