@@ -24,6 +24,7 @@
     <script>
         var local = window.document.querySelector("div#images");
         var index = 0;
+        var scrollPosition = 0;
         var listaHeight = [];
         var lista = [
             "https://mangayabu.top/mangas2/eleceed/capitulo-155/00.jpg",
@@ -43,7 +44,7 @@
         ];
 
         /// scroll to
-        function scrollTo(index) {
+        function scrollToIndex(index) {
             var image = window.document.querySelector(`#img${index}`);
             image.scrollIntoView();
         }
@@ -51,16 +52,49 @@
         function sendResponse(indice) {
             console.log(`index: ${indice}`);
         }
+        // function calculateHeight(indice) {
+
+        // }
+        /**
+         * escuta a posição da tela
+        */
+        window.addEventListener("scroll", (event) => {
+            scrollPosition = this.scrollY;
+            let isCalculating = true;
+            let calculatedValue = 0;
+            let indice = 0;
+            while (isCalculating) {
+                calculatedValue += listaHeight[indice];
+                if (scrollPosition <= calculatedValue && scrollPosition >= (calculatedValue - listaHeight[indice])) {
+                    // console.log(`index: ${indice}`);
+                    sendResponse(indice);
+                    isCalculating = false;
+                }
+                indice++;
+                if (indice == 22) {
+                    isCalculating = false;
+                }
+            }
+            console.log(this.scrollY);
+        });
+        /**
+         * rola ate a posição indicada
+        */
+        function scrollToValue(value) {
+            window.scrollTo(value,value);
+        }
 
         async function renderCore(src) {
             const img = new Image();
             img.setAttribute("id", `img${index}`);
             img.onload = function() {
-                console.log(`h: ${this.height} = w: ${this.width} / r: ${(window.innerWidth * this.height) / this.width}`);
+                let heightOfImage = (window.innerWidth * this.height) / this.width;
+                console.log(`h: ${this.height} = w: ${this.width} / r: ${heightOfImage}`);
                 img.setAttribute("onclick", `sendResponse(${index})`)
                 img.setAttribute("width", `${window.innerWidth}px`);
                 // img.setAttribute("height", `${(window.innerWidth * this.height) / this.width}px`);
-                listaHeight.push(Number.parseFloat(this.height));
+                listaHeight.push(Number.parseFloat(heightOfImage));
+                
 
                 //img.height = ((window.innerWidth * this.height) / this.width);
                 local.appendChild(img);
